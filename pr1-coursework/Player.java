@@ -22,8 +22,11 @@ public class Player extends Actor {
     private int count = 0;
     private int animationSpeed = 10;  
     private int animationTimer = 0;
+    private Ingredient playerInventory;
 
     public Player() {
+        this.playerInventory = null;
+        
         standing_img.scale(36, 63);
         setImage(standing_img);
         
@@ -45,7 +48,12 @@ public class Player extends Actor {
         GreenfootImage[] direction = null;
         int x = getX();
         int y = getY();
-
+        
+        if (isTouching(Ingredient.class)){
+            Ingredient targetIngredient = (Ingredient) getOneIntersectingObject(Ingredient.class);
+            pickUpIngredient(targetIngredient);
+        }
+        
         if (Greenfoot.isKeyDown("W")) {
             setRotation(270);
             direction = up;
@@ -102,5 +110,14 @@ public class Player extends Actor {
                 setLocation(x, y);
             }
     }
+    
+    private void pickUpIngredient(Ingredient targetIngredient){
+        if (playerInventory == null){
+            playerInventory = targetIngredient;
+            getWorld().removeObject(targetIngredient);
+        }
+    }
 }
+
+
 
