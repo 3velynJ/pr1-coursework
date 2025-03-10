@@ -28,7 +28,9 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-        Player player = new Player();
+        InventoryUI inventoryUI = new InventoryUI();
+        
+        Player player = new Player(inventoryUI);
         addObject(player,500,250);
         
         addObject(new Counter(), 1075, 475);
@@ -67,6 +69,7 @@ public class MyWorld extends World
         addObject(new Counter(), 425, 375);
         addObject(new Counter(), 425, 425);
         addObject(new Counter(), 425, 475);
+        addObject(inventoryUI, 100, 250);
         
         Ingredient carrot = IngredientFactory.createVegetableIngredient("carrot",10,10,30);
         addObject(carrot,25,25);

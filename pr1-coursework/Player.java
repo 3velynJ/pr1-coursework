@@ -1,6 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class Player extends Actor {   
+public class Player extends Actor {
+    private int count = 0;
+    private int animationSpeed = 10;  
+    private int animationTimer = 0;
+    private Ingredient playerInventory;
+    private InventoryUI inventoryUI;
+    
     GreenfootImage standing_img = new GreenfootImage("images/standing-char.png");
     GreenfootImage[] down = {
         new GreenfootImage("images/down-char1.png"),
@@ -19,12 +25,8 @@ public class Player extends Actor {
         new GreenfootImage("images/up-char2.png")
     };
 
-    private int count = 0;
-    private int animationSpeed = 10;  
-    private int animationTimer = 0;
-    private Ingredient playerInventory;
-
-    public Player() {
+    public Player(InventoryUI inventoryUI) {
+        this.inventoryUI = inventoryUI;
         this.playerInventory = null;
         
         standing_img.scale(36, 63);
@@ -51,8 +53,9 @@ public class Player extends Actor {
         
         if (isTouching(Ingredient.class)){
             Ingredient targetIngredient = (Ingredient) getOneIntersectingObject(Ingredient.class);
+            if (targetIngredient != null){
             pickUpIngredient(targetIngredient);
-        }
+        }}
         
         if (Greenfoot.isKeyDown("W")) {
             setRotation(270);
@@ -115,6 +118,7 @@ public class Player extends Actor {
         if (playerInventory == null){
             playerInventory = targetIngredient;
             getWorld().removeObject(targetIngredient);
+            inventoryUI.updateInventoryUI(targetIngredient.getImage().toString());
         }
     }
 }
