@@ -7,14 +7,18 @@ public class Step {
     private boolean isStepComplete;
     protected String ingredientName;
     protected boolean isRuined;
+    protected String relativePath;
     
     
-    public Step(Location location, String name){
+    public Step(Location location, String name, String relativePath){
         this.location = location;
         this.ingredientName = name;
         this.isIconChanged = false;
         this.isStepComplete = false;
         this.isRuined = false;
+        this.relativePath = relativePath;
+        setIcon(relativePath);
+        
     }
 
     public void prepareIngredient(){
@@ -38,6 +42,9 @@ public class Step {
         return isIconChanged;
     } 
 
+    public String getRelativePath() { 
+        return relativePath;
+          }
 
     public boolean getIsStepComplete(){
         return isStepComplete;

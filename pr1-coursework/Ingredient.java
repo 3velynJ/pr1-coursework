@@ -69,4 +69,8 @@ public class Ingredient extends Actor {
         return isPrepared;
     } 
 
+    public String getRelativePath(){
+        return currentStep.getRelativePath();
+    }
+
 }

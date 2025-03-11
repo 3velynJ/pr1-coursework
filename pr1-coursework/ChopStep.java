@@ -7,15 +7,15 @@ public class ChopStep extends Step{
     
 
     public ChopStep(Location location, String name, int chopsRequired, boolean hasPrevStep){
-        super(location, name); 
+        super(location, name, name+".png"); 
         this.chopsRequired = chopsRequired;
         this.chopCount = 0;
         this.cDown = false;
-        if (hasPrevStep){
-            setIcon(name + "-cooked.png");
-        } else{
-            setIcon(name + ".png");
-        }
+        // if (hasPrevStep){
+        //     setIcon(name + "-cooked.png");
+        // } else{
+        //     setIcon(name + ".png");
+        // }
     }
     
     public void prepareIngredient(){
@@ -37,6 +37,7 @@ public class ChopStep extends Step{
         if (chopCount >= chopsRequired){
             setIcon(ingredientName + "-chopped.png");
             setIsStepComplete(true);
+            super.relativePath = ingredientName + "-chopped.png";
         }
         
     }

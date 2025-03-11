@@ -114,11 +114,14 @@ public class Player extends Actor {
             }
     }
     
+    
     private void pickUpIngredient(Ingredient targetIngredient){
         if (playerInventory == null){
             playerInventory = targetIngredient;
             getWorld().removeObject(targetIngredient);
-            inventoryUI.updateInventoryUI(targetIngredient.getImage().toString());
+            if(playerInventory != null) {
+            inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
+            }
         }
     }
 }

@@ -21,7 +21,6 @@ public class InventoryUI extends Actor
         inventoryContainer.drawRect(0,0,49,49);
         
         if (ingredientTexturePath != null){
-            System.out.println("Test"+ingredientTexturePath);
             GreenfootImage ingredientTexture = new GreenfootImage(ingredientTexturePath);
             ingredientTexture.scale(50,50);
             inventoryContainer.drawImage(ingredientTexture,0,0);
