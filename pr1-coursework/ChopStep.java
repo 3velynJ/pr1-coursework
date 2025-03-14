@@ -34,9 +34,14 @@ public class ChopStep extends Step{
     
     private void chop(){
         chopCount++;
-        if (chopCount >= chopsRequired){
+        if (chopCount == chopsRequired){
             setIcon(ingredientName + "-chopped.png");
             setIsStepComplete(true);
+        }
+        if (chopCount > chopsRequired){
+            setIcon("over-chopped.png");
+            setIsStepComplete(false);
+            setIsRuined();
         }
         
     }

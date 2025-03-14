@@ -8,7 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    GreenfootImage background = new GreenfootImage("images/kitchen_floor.png");
+    private GreenfootImage background = new GreenfootImage("images/kitchen_floor.png");
+    public static final int WORLD_HEIGHT = 500;
+    public static final int WORLD_WIDTH = 1100;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -17,8 +19,8 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 1100x500 cells with a cell size of 1x1 pixels.
-        super(1100, 500, 1);
-        background.scale(1100, 500);
+        super(WORLD_WIDTH, WORLD_HEIGHT, 1);
+        background.scale(WORLD_WIDTH, WORLD_HEIGHT);
         setBackground(background);
         prepare();
     }

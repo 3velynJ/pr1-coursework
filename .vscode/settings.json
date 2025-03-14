@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/Applications/Greenfoot.app/Contents/Java/greenfoot.jar"
+    ]
+}

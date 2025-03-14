@@ -6,7 +6,7 @@ public class Step {
     private boolean isIconChanged;
     private boolean isStepComplete;
     protected String ingredientName;
-    protected boolean isRuined;
+    private boolean isRuined;
     
     
     public Step(Location location, String name){
@@ -46,6 +46,16 @@ public class Step {
     protected void setIsStepComplete(boolean stepComplete){
         isStepComplete = stepComplete;
     } 
+
+
+    public boolean getIsRuined(){
+        return isRuined;
+    } 
+
+    protected void setIsRuined(){
+        isRuined = true;
+    } 
+
 
 
     
