@@ -37,7 +37,7 @@ public class CookStep extends Step{
         if (burnTime == timer.millisElapsed()){
             setIcon("burnt.png");
             setIsStepComplete(false);
-            isRuined = true;
+            setIsRuined();
         }
     
     }
