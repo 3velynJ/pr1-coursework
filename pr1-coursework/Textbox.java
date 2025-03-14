@@ -9,4 +9,18 @@ public class Textbox extends Actor {
         textbox = new GreenfootImage(text + defaultText, FONT_SIZE, greenfoot.Color.BLACK, greenfoot.Color.PINK, greenfoot.Color.BLACK);
         setImage(textbox);
     }
+
+    public void act(){
+        if (Greenfoot.isKeyDown("space")) {
+            removeSelf();
+        }
+
+    }
+ 
+    public void removeSelf()
+    {
+        getWorld().removeObject(this);
+    }
+
+
 }
