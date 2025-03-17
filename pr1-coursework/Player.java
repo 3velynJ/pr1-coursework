@@ -5,7 +5,7 @@ public class Player extends Actor {
     private int animationSpeed = 10;  
     private int animationTimer = 0;
     private Ingredient playerInventory;
-    // private InventoryUI inventoryUI;
+    private InventoryUI inventoryUI;
     
     GreenfootImage standing_img = new GreenfootImage("images/standing-char.png");
     GreenfootImage[] down = {
@@ -26,7 +26,7 @@ public class Player extends Actor {
     };
 
     public Player(InventoryUI inventoryUI) {
-        // this.inventoryUI = inventoryUI;
+        this.inventoryUI = inventoryUI;
         this.playerInventory = null;
         
         standing_img.scale(36, 63);
@@ -121,25 +121,25 @@ public class Player extends Actor {
         }
     }
     
-//     private void pickUpIngredient(IngredientStorage ingredientStorage){
-//         playerInventory = ingredientStorage.getIngredient();
-//         if(playerInventory != null) {
-//         inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
-//         }
-//         ingredientStorage.startCooldown();
-//     }
+     private void pickUpIngredient(IngredientStorage ingredientStorage){
+         playerInventory = ingredientStorage.getIngredient();
+         if(playerInventory != null) {
+         inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
+         }
+         ingredientStorage.startCooldown();
+     }
     
-//     private void checkStorageCrateInteraction() {
-//         if (Greenfoot.isKeyDown("e")) {
-//             List<IngredientStorage> storage = getObjectsInRange(60, IngredientStorage.class);
-//             if (!storage.isEmpty()) {
-//                 IngredientStorage nearestStorage = storage.get(0);
-//                 if (nearestStorage.canInteract()) {
-//                     pickUpIngredient(nearestStorage);
-//                 }
-//             }
-//         }
-//     }
+     private void checkStorageCrateInteraction() {
+         if (Greenfoot.isKeyDown("e")) {
+             List<IngredientStorage> storage = getObjectsInRange(60, IngredientStorage.class);
+             if (!storage.isEmpty()) {
+                 IngredientStorage nearestStorage = storage.get(0);
+                 if (nearestStorage.canInteract()) {
+                     pickUpIngredient(nearestStorage);
+                 }
+             }
+         }
+     }
 }
 
 

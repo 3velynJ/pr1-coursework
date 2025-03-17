@@ -71,7 +71,10 @@ public class Ingredient {
             isPrepared = true;
         }
     }
- 
+    
+    public String getRelativePath(){
+        return currentStep.getRelativePath();
+    }
 
     public boolean getIsIngredientPrepared(){
         return isPrepared;
