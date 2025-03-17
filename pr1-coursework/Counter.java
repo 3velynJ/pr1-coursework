@@ -8,11 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Counter extends Obstacle
 {   
-    GreenfootImage counter_img = new GreenfootImage("images/counter.png");
+    // GreenfootImage counter_img = new GreenfootImage("images/counter.png");
     public Counter() {
         super(50, 50);
-        counter_img.scale(50, 50);
-        setImage(counter_img);
+        // counter_img.scale(50, 50);
+        // setImage(counter_img);
     }
     
     /**

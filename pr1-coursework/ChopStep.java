@@ -6,8 +6,8 @@ public class ChopStep extends Step{
     private boolean cDown;
     
 
-    public ChopStep(Location location, String name, int chopsRequired, boolean hasPrevStep){
-        super(location, name, name+".png"); 
+    public ChopStep(String name, int chopsRequired, boolean hasPrevStep){
+        super(name, name+".png"); 
         this.chopsRequired = chopsRequired;
         this.chopCount = 0;
         this.cDown = false;
