@@ -22,8 +22,8 @@ public class InventoryUI extends Actor
         
         if (ingredientTexturePath != null){
             GreenfootImage ingredientTexture = new GreenfootImage(ingredientTexturePath);
-            ingredientTexture.scale(50,50);
-            inventoryContainer.drawImage(ingredientTexture,0,0);
+            ingredientTexture.scale(35,35);
+            inventoryContainer.drawImage(ingredientTexture,8,8);
         }
         setImage(inventoryContainer);
     }

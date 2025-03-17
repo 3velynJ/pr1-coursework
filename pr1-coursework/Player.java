@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.List;
 public class Player extends Actor {
     private int count = 0;
     private int animationSpeed = 10;  
@@ -48,6 +48,8 @@ public class Player extends Actor {
     public void act() {
         
         movement();
+      
+        checkStorageCrateInteraction();
         
         //if (isTouching(Ingredient.class)){
         //    Ingredient targetIngredient = (Ingredient) getOneIntersectingObject(Ingredient.class);
@@ -119,16 +121,28 @@ public class Player extends Actor {
         }
     }
     
-    private void pickUpIngredient(Ingredient targetIngredient){
-        if (playerInventory == null){
-            playerInventory = targetIngredient;
-            //getWorld().removeObject(targetIngredient);
-            if(playerInventory != null) {
-            //inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
-            }
-        }
-    }
+//     private void pickUpIngredient(IngredientStorage ingredientStorage){
+//         playerInventory = ingredientStorage.getIngredient();
+//         if(playerInventory != null) {
+//         inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
+//         }
+//         ingredientStorage.startCooldown();
+//     }
+    
+//     private void checkStorageCrateInteraction() {
+//         if (Greenfoot.isKeyDown("e")) {
+//             List<IngredientStorage> storage = getObjectsInRange(60, IngredientStorage.class);
+//             if (!storage.isEmpty()) {
+//                 IngredientStorage nearestStorage = storage.get(0);
+//                 if (nearestStorage.canInteract()) {
+//                     pickUpIngredient(nearestStorage);
+//                 }
+//             }
+//         }
+//     }
 }
+
+
 
 
 

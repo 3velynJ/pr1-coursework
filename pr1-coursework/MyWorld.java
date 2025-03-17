@@ -84,10 +84,18 @@ public class MyWorld extends World
         addObject(new Counter(), 1075, 125);
         
         Ingredient carrot = IngredientFactory.createVegetableIngredient("carrot",10,10,30);
+
         // name, no. of chops, cooktime, burntime
         // addObject(carrot,25,25);
         Ingredient bread = IngredientFactory.createStandardIngredient("bread",5);
         // name, no. of chops
         // addObject(bread,12,15);
+        
+        // Ingredient bread = IngredientFactory.createStandardIngredient("bread",5);
+        
+        //IngredientStorage carrotStorage = new IngredientStorage(carrot);
+        //addObject(carrotStorage, 25, 25);
+        //IngredientStorage breadStorage = new IngredientStorage(bread);
+        //addObject(breadStorage, 150, 15);
     }
 }
