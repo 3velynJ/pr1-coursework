@@ -6,8 +6,8 @@ public class CookStep extends Step{
     private int burnTime;
     private SimpleTimer timer;
 
-       public CookStep(Location location, String name, int cookTime, int burnTime, boolean hasPrevStep){
-        super(location, name, name+".png"); 
+       public CookStep(String name, int cookTime, int burnTime, boolean hasPrevStep){
+        super(name, name+".png"); 
         this.cookTime = cookTime * MILLIS_PER_SECOND;
         this.burnTime = burnTime * MILLIS_PER_SECOND;
         this.timer = new SimpleTimer();

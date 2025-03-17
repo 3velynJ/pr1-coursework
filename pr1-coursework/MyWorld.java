@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    GreenfootImage background = new GreenfootImage("images/kitchen_floor.png");
+    GreenfootImage background = new GreenfootImage("images/background.png");
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -17,8 +17,8 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 1100x500 cells with a cell size of 1x1 pixels.
-        super(1100, 500, 1);
-        background.scale(1100, 500);
+        super(1400, 600, 1);
+        background.scale(1400, 600);
         setBackground(background);
         prepare();
     }
@@ -35,7 +35,7 @@ public class MyWorld extends World
         
         addObject(new Counter(), 1075, 475);
         addObject(new Counter(), 1075, 425);
-        addObject(new Counter(), 1075, 375);
+        // addObject(new Counter(), 1075, 375);
         addObject(new Counter(), 1025, 475);
         addObject(new Counter(), 975, 475);
         addObject(new Counter(), 925, 475);
@@ -69,15 +69,33 @@ public class MyWorld extends World
         addObject(new Counter(), 425, 375);
         addObject(new Counter(), 425, 425);
         addObject(new Counter(), 425, 475);
-        addObject(inventoryUI, 100, 250);
+        
+        // addObject(inventoryUI, 100, 250);
+        
+        addObject(new Hob(), 875, 475);
+        addObject(new ChoppingBoard(), 475, 475);
+        addObject(new Hatch(), 425, 250);
+        
+        addObject(new Storage(), 1075, 375);
+        addObject(new Counter(), 1075, 325);
+        addObject(new Storage(), 1075, 275);
+        addObject(new Counter(), 1075, 225);
+        addObject(new Storage(), 1075, 175);
+        addObject(new Counter(), 1075, 125);
         
         Ingredient carrot = IngredientFactory.createVegetableIngredient("carrot",10,10,30);
-        
+
+        // name, no. of chops, cooktime, burntime
+        // addObject(carrot,25,25);
         Ingredient bread = IngredientFactory.createStandardIngredient("bread",5);
+        // name, no. of chops
+        // addObject(bread,12,15);
         
-        IngredientStorage carrotStorage = new IngredientStorage(carrot);
-        addObject(carrotStorage, 25, 25);
-        IngredientStorage breadStorage = new IngredientStorage(bread);
-        addObject(breadStorage, 150, 15);
+        // Ingredient bread = IngredientFactory.createStandardIngredient("bread",5);
+        
+        //IngredientStorage carrotStorage = new IngredientStorage(carrot);
+        //addObject(carrotStorage, 25, 25);
+        //IngredientStorage breadStorage = new IngredientStorage(bread);
+        //addObject(breadStorage, 150, 15);
     }
 }

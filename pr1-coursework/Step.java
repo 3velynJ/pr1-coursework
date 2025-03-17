@@ -1,7 +1,7 @@
 import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Step {
-    private Location location;
+    // private Location location;
     private GreenfootImage icon;
     private boolean isIconChanged;
     private boolean isStepComplete;
@@ -10,8 +10,8 @@ public class Step {
     protected String relativePath;
     
     
-    public Step(Location location, String name, String relativePath){
-        this.location = location;
+    public Step(String name, String relativePath){
+        // this.location = location;
         this.ingredientName = name;
         this.isIconChanged = false;
         this.isStepComplete = false;
@@ -24,9 +24,9 @@ public class Step {
     public void prepareIngredient(){
     };
 
-    public Location getLocation(){
-        return location;
-    } 
+    //public Location getLocation(){
+    //    return location;
+    //} 
 
     public GreenfootImage getIcon(){
         isIconChanged = false;

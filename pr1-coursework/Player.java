@@ -46,12 +46,38 @@ public class Player extends Actor {
     }
 
     public void act() {
+        
+        movement();
+      
+        checkStorageCrateInteraction();
+        
+        //if (isTouching(Ingredient.class)){
+        //    Ingredient targetIngredient = (Ingredient) getOneIntersectingObject(Ingredient.class);
+        //    if (targetIngredient != null){
+        //    pickUpIngredient(targetIngredient);
+        // }}
+    }
+
+    public void animate(GreenfootImage[] imgs) {
+        animationTimer++;  // Increases every frame
+
+        if (animationTimer % animationSpeed == 0) { 
+            setImage(imgs[count]);
+            count = (count + 1) % imgs.length;  // Loop between 0 and 1
+        }
+    }
+
+    public void handleCollision(int x, int y){
+        if (isTouching(Obstacle.class)) {
+                setLocation(x, y);
+            }
+    }
+    
+    public void movement() {
         boolean isMoving = false;
         GreenfootImage[] direction = null;
         int x = getX();
         int y = getY();
-        
-        checkStorageCrateInteraction();
         
         if (Greenfoot.isKeyDown("W")) {
             setRotation(270);
@@ -94,42 +120,26 @@ public class Player extends Actor {
             count = 0;  // Reset animation when stopping
         }
     }
-
-    public void animate(GreenfootImage[] imgs) {
-        animationTimer++;  // Increases every frame
-
-        if (animationTimer % animationSpeed == 0) { 
-            setImage(imgs[count]);
-            count = (count + 1) % imgs.length;  // Loop between 0 and 1
-        }
-    }
-
-    public void handleCollision(int x, int y){
-        if (isTouching(Obstacle.class)) {
-                setLocation(x, y);
-            }
-    }
     
+     private void pickUpIngredient(IngredientStorage ingredientStorage){
+         playerInventory = ingredientStorage.getIngredient();
+         if(playerInventory != null) {
+         inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
+         }
+         ingredientStorage.startCooldown();
+     }
     
-    private void pickUpIngredient(IngredientStorage ingredientStorage){
-        playerInventory = ingredientStorage.getIngredient();
-        if(playerInventory != null) {
-        inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
-        }
-        ingredientStorage.startCooldown();
-    }
-    
-    private void checkStorageCrateInteraction() {
-        if (Greenfoot.isKeyDown("e")) {
-            List<IngredientStorage> storage = getObjectsInRange(60, IngredientStorage.class);
-            if (!storage.isEmpty()) {
-                IngredientStorage nearestStorage = storage.get(0);
-                if (nearestStorage.canInteract()) {
-                    pickUpIngredient(nearestStorage);
-                }
-            }
-        }
-    }
+     private void checkStorageCrateInteraction() {
+         if (Greenfoot.isKeyDown("e")) {
+             List<IngredientStorage> storage = getObjectsInRange(60, IngredientStorage.class);
+             if (!storage.isEmpty()) {
+                 IngredientStorage nearestStorage = storage.get(0);
+                 if (nearestStorage.canInteract()) {
+                     pickUpIngredient(nearestStorage);
+                 }
+             }
+         }
+     }
 }
 
 
