@@ -76,7 +76,7 @@ public class MyWorld extends World
         addObject(new ChoppingBoard(), 475, 475);
         addObject(new Hatch(), 425, 250);
         
-        
+        addObject(new Ticket("blt"), 1250, 300);
         
         Ingredient carrot = IngredientFactory.createVegetableIngredient("carrot",10,10,30);
 
