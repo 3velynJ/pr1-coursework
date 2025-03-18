@@ -140,6 +140,14 @@ public class Player extends Actor {
              }
          }
      }
+     
+     public void setInventory(Ingredient ingredient) {
+         playerInventory = ingredient;
+     }
+     
+     public Ingredient getInventory() {
+         return playerInventory;
+     }
 }
 
 

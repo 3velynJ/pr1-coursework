@@ -76,12 +76,7 @@ public class MyWorld extends World
         addObject(new ChoppingBoard(), 475, 475);
         addObject(new Hatch(), 425, 250);
         
-        addObject(new Storage(), 1075, 375);
-        addObject(new Counter(), 1075, 325);
-        addObject(new Storage(), 1075, 275);
-        addObject(new Counter(), 1075, 225);
-        addObject(new Storage(), 1075, 175);
-        addObject(new Counter(), 1075, 125);
+        
         
         Ingredient carrot = IngredientFactory.createVegetableIngredient("carrot",10,10,30);
 
@@ -90,6 +85,15 @@ public class MyWorld extends World
         Ingredient bread = IngredientFactory.createStandardIngredient("bread",5);
         // name, no. of chops
         // addObject(bread,12,15);
+        
+        addObject(new Storage(carrot), 1075, 375);
+        addObject(new Counter(), 1075, 325);
+        addObject(new Storage(carrot), 1075, 275);
+        addObject(new Counter(), 1075, 225);
+        addObject(new Storage(carrot), 1075, 175);
+        addObject(new Counter(), 1075, 125);
+        
+        // ----- Ingredients should be instantiated in Storage class!!! ------
         
         // Ingredient bread = IngredientFactory.createStandardIngredient("bread",5);
         
