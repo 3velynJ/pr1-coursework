@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    GreenfootImage background = new GreenfootImage("images/kitchen_floor.png");
+    GreenfootImage background = new GreenfootImage("images/background.png");
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -17,8 +17,8 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 1100x500 cells with a cell size of 1x1 pixels.
-        super(1100, 500, 1);
-        background.scale(1100, 500);
+        super(1400, 600, 1);
+        background.scale(1400, 600);
         setBackground(background);
         prepare();
     }
@@ -28,12 +28,14 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-        Player player = new Player();
+        InventoryUI inventoryUI = new InventoryUI();
+        
+        Player player = new Player(inventoryUI);
         addObject(player,500,250);
         
         addObject(new Counter(), 1075, 475);
         addObject(new Counter(), 1075, 425);
-        addObject(new Counter(), 1075, 375);
+        // addObject(new Counter(), 1075, 375);
         addObject(new Counter(), 1025, 475);
         addObject(new Counter(), 975, 475);
         addObject(new Counter(), 925, 475);
@@ -68,9 +70,36 @@ public class MyWorld extends World
         addObject(new Counter(), 425, 425);
         addObject(new Counter(), 425, 475);
         
+        // addObject(inventoryUI, 100, 250);
+        
+        addObject(new Hob(), 875, 475);
+        addObject(new ChoppingBoard(), 475, 475);
+        addObject(new Hatch(), 425, 250);
+        
+        addObject(new Ticket("bl"), 1250, 300);
+        
         Ingredient carrot = IngredientFactory.createVegetableIngredient("carrot",10,10,30);
-        addObject(carrot,25,25);
         Ingredient bread = IngredientFactory.createStandardIngredient("bread",5);
-        addObject(bread,12,15);
+        // ----- Ingredients should be instantiated in Storage class!!! ------
+        // pass in name string (e.g. "bread") to Storage object and create ingredient accordingly
+        
+        addObject(new Storage(carrot), 1075, 375);
+        addObject(new Counter(), 1075, 325);
+        addObject(new Storage(carrot), 1075, 275);
+        addObject(new Counter(), 1075, 225);
+        addObject(new Storage(carrot), 1075, 175); 
+        addObject(new Counter(), 1075, 125);
+        
+        addObject(new Plate(), 675, 25);
+        
+        addObject(new Storage(carrot), 675, 475);
+        addObject(new Counter(), 525, 475);
+        addObject(new Counter(), 575, 475);
+        addObject(new Counter(), 625, 475);
+        addObject(new Counter(), 725, 475);
+        addObject(new Counter(), 775, 475);
+        addObject(new Counter(), 825, 475);
+        
+        
     }
 }
