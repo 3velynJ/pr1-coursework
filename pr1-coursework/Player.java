@@ -49,7 +49,7 @@ public class Player extends Actor {
         
         movement();
       
-        checkStorageCrateInteraction();
+        //checkStorageCrateInteraction();
         
         //if (isTouching(Ingredient.class)){
         //    Ingredient targetIngredient = (Ingredient) getOneIntersectingObject(Ingredient.class);
@@ -121,24 +121,32 @@ public class Player extends Actor {
         }
     }
     
-     private void pickUpIngredient(IngredientStorage ingredientStorage){
-         playerInventory = ingredientStorage.getIngredient();
-         if(playerInventory != null) {
-         inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
-         }
-         ingredientStorage.startCooldown();
-     }
+     //private void pickUpIngredient(IngredientStorage ingredientStorage){
+     //    playerInventory = ingredientStorage.getIngredient();
+     //    if(playerInventory != null) {
+     //    inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
+     //    }
+     //    ingredientStorage.startCooldown();
+     //}
     
-     private void checkStorageCrateInteraction() {
-         if (Greenfoot.isKeyDown("e")) {
-             List<IngredientStorage> storage = getObjectsInRange(60, IngredientStorage.class);
-             if (!storage.isEmpty()) {
-                 IngredientStorage nearestStorage = storage.get(0);
-                 if (nearestStorage.canInteract()) {
-                     pickUpIngredient(nearestStorage);
-                 }
-             }
-         }
+     //private void checkStorageCrateInteraction() {
+     //    if (Greenfoot.isKeyDown("e")) {
+     //        List<IngredientStorage> storage = getObjectsInRange(60, IngredientStorage.class);
+     //        if (!storage.isEmpty()) {
+     //            IngredientStorage nearestStorage = storage.get(0);
+     //            if (nearestStorage.canInteract()) {
+     //                pickUpIngredient(nearestStorage);
+     //            }
+     //        }
+     //    }
+     //}
+     
+     public void setInventory(Ingredient ingredient) {
+         playerInventory = ingredient;
+     }
+     
+     public Ingredient getInventory() {
+         return playerInventory;
      }
 }
 

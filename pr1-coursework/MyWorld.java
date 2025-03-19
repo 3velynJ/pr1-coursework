@@ -76,26 +76,30 @@ public class MyWorld extends World
         addObject(new ChoppingBoard(), 475, 475);
         addObject(new Hatch(), 425, 250);
         
-        addObject(new Storage(), 1075, 375);
-        addObject(new Counter(), 1075, 325);
-        addObject(new Storage(), 1075, 275);
-        addObject(new Counter(), 1075, 225);
-        addObject(new Storage(), 1075, 175);
-        addObject(new Counter(), 1075, 125);
+        addObject(new Ticket("bl"), 1250, 300);
         
         Ingredient carrot = IngredientFactory.createVegetableIngredient("carrot",10,10,30);
-
-        // name, no. of chops, cooktime, burntime
-        // addObject(carrot,25,25);
         Ingredient bread = IngredientFactory.createStandardIngredient("bread",5);
-        // name, no. of chops
-        // addObject(bread,12,15);
+        // ----- Ingredients should be instantiated in Storage class!!! ------
+        // pass in name string (e.g. "bread") to Storage object and create ingredient accordingly
         
-        // Ingredient bread = IngredientFactory.createStandardIngredient("bread",5);
+        addObject(new Storage(carrot), 1075, 375);
+        addObject(new Counter(), 1075, 325);
+        addObject(new Storage(carrot), 1075, 275);
+        addObject(new Counter(), 1075, 225);
+        addObject(new Storage(carrot), 1075, 175); 
+        addObject(new Counter(), 1075, 125);
         
-        //IngredientStorage carrotStorage = new IngredientStorage(carrot);
-        //addObject(carrotStorage, 25, 25);
-        //IngredientStorage breadStorage = new IngredientStorage(bread);
-        //addObject(breadStorage, 150, 15);
+        addObject(new Plate(), 675, 25);
+        
+        addObject(new Storage(carrot), 675, 475);
+        addObject(new Counter(), 525, 475);
+        addObject(new Counter(), 575, 475);
+        addObject(new Counter(), 625, 475);
+        addObject(new Counter(), 725, 475);
+        addObject(new Counter(), 775, 475);
+        addObject(new Counter(), 825, 475);
+        
+        
     }
 }
