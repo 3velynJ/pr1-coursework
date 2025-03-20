@@ -70,13 +70,11 @@ public class MyWorld extends World
         addObject(new Counter(), 425, 425);
         addObject(new Counter(), 425, 475);
         
-        // addObject(inventoryUI, 100, 250);
+        addObject(inventoryUI, 100, 550);
         
         addObject(new Hob(), 875, 475);
         addObject(new ChoppingBoard(), 475, 475);
         addObject(new Hatch(), 425, 250);
-        
-        addObject(new Ticket("bl"), 1250, 300);
         
         Ingredient carrot = IngredientFactory.createVegetableIngredient("carrot",10,10,30);
         Ingredient bread = IngredientFactory.createStandardIngredient("bread",5);
@@ -85,14 +83,14 @@ public class MyWorld extends World
         
         addObject(new Storage(carrot), 1075, 375);
         addObject(new Counter(), 1075, 325);
-        addObject(new Storage(carrot), 1075, 275);
+        addObject(new Storage(bread), 1075, 275);
         addObject(new Counter(), 1075, 225);
         addObject(new Storage(carrot), 1075, 175); 
         addObject(new Counter(), 1075, 125);
         
         addObject(new Plate(), 675, 25);
         
-        addObject(new Storage(carrot), 675, 475);
+        addObject(new Storage(bread), 675, 475);
         addObject(new Counter(), 525, 475);
         addObject(new Counter(), 575, 475);
         addObject(new Counter(), 625, 475);
