@@ -1,25 +1,15 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
-/**
- * Write a description of class Hob here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class Hob extends Counter
-{
+public class Hob extends Workstation
+{   
     public Hob() {
     }
-    public void act()
-    {
-        if (!(getObjectsInRange(75, Player.class).isEmpty())) {
-            getWorld().showText("Player touching hob", 150, 150);
-            if (Greenfoot.isKeyDown("E")) {
-                getWorld().showText("E key down", 150, 150);
-            }
-        } else {
-            getWorld().showText(" ", 150, 150);
-        }
-        
+    @Override
+    protected void onInteraction(Player player) {
+        //This is where the logic goes
+    }
+    @Override
+    public void act(){
+        super.act();
     }
 }

@@ -140,7 +140,13 @@ public class Player extends Actor {
      //        }
      //    }
      //}
-     
+     public void updateInventoryUI(){
+    if(playerInventory != null) {
+        inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
+    } else {
+        inventoryUI.updateInventoryUI(null);
+    }
+}
      public void setInventory(Ingredient ingredient) {
          playerInventory = ingredient;
      }
