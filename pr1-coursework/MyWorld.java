@@ -98,6 +98,8 @@ public class MyWorld extends World
         addObject(new Counter(), 775, 475);
         addObject(new Counter(), 825, 475);
         
+        addObject(new Sign(), 750, 550);
+        
         
     }
 }
