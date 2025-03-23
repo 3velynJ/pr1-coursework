@@ -5,6 +5,7 @@ public class CookStep extends Step{
     private int cookTime;
     private int burnTime;
     private SimpleTimer timer;
+    private boolean timerStarted;
 
        public CookStep(Location location, String name, int cookTime, int burnTime, boolean hasPrevStep){
         super(location, name); 
@@ -12,6 +13,7 @@ public class CookStep extends Step{
         this.cookTime = cookTime * MILLIS_PER_SECOND;
         this.burnTime = burnTime * MILLIS_PER_SECOND;
         this.timer = new SimpleTimer();
+        this.timerStarted = false;
         // Determine what the starting image for this step should be based on whether the ingredient has already been processed by a step before this
         if (hasPrevStep){
             setIcon(name + "-chopped.png");
@@ -21,24 +23,25 @@ public class CookStep extends Step{
     }
 
     public void prepareIngredient(){
-        startCooking();
+        cook();
     };
     
-    // Start the timer and once the time has 
-    // Then call the
-    private void startCooking(){
-        timer.mark();
-        if (cookTime == timer.millisElapsed()){
-            setIcon(ingredientName + "-cooked.png");
-            setIsStepComplete(true);
-            startBurning();
+
+    private void cook(){
+        if (timerStarted){
+            if (cookTime <= timer.millisElapsed()){
+                setIcon(ingredientName + "-cooked.png");
+                setIsStepComplete(true);
+                burn();
+            }
+        } else {
+            timer.mark();
+            timerStarted = true;
         }
-    
     }
 
-    private void startBurning(){
-        timer.mark();
-        if (burnTime == timer.millisElapsed()){
+    private void burn(){
+        if (burnTime <= timer.millisElapsed()){
             setIcon("burnt.png");
             setIsStepComplete(false);
             setIsRuined();

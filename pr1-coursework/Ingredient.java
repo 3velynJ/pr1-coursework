@@ -20,6 +20,7 @@ public class Ingredient extends Actor {
         this.steps = steps;
         this.currentStep = steps.get(0);
         this.isPrepared = false;
+        this.myLocation = Location.INVENTORY;
         setImage(currentStep.getIcon());
     }
 
@@ -37,7 +38,7 @@ public class Ingredient extends Actor {
     
     }
 
-    public void setLocation(Location location){
+    public void setIngredientLocation(Location location){
         if (location != myLocation){
             // Always let the player pick up the ingredient
             if (location == Location.INVENTORY){
@@ -51,8 +52,12 @@ public class Ingredient extends Actor {
                 if (currentStep.getIsRuined()){
                     getWorld().addObject(new Textbox("Uh oh! This ingredient is ruined.\nYou can't use it anymore.\nPlease put it in the bin and start again."), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
                 }
-                else if ((location != currentStep.getLocation()) || (location == Location.PLATE && !isPrepared) || location != Location.PLATE && isPrepared){
+                else if ((location != currentStep.getLocation()) || (location == Location.PLATE && !isPrepared)){
                     getWorld().addObject(new Textbox("Uh Oh! This is the wrong location.\nPlease take this ingredient to the " + (currentStep.getLocation().locationText)), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
+                } 
+                // The ingredient is prepared and the user hs tried to set the location to anything other than the plate
+                else if (location != Location.PLATE && isPrepared){
+                    getWorld().addObject(new Textbox("Uh Oh! This is the wrong location.\nPlease take this ingredient to the plate"), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
                 }
                 // The player is at the correct location
                 else {
@@ -64,7 +69,6 @@ public class Ingredient extends Actor {
 
 
     public void moveToNextStep(){
-        setLocation(Location.HOB);
         int currentIndex = steps.indexOf(currentStep);
         int nextIndex = currentIndex + 1;
         if (nextIndex < (steps.size())){
@@ -81,9 +85,3 @@ public class Ingredient extends Actor {
     } 
 
 }
-    
-//     public String getRelativePath(){
-//         return currentStep.getRelativePath();
-//     }
-
-// 

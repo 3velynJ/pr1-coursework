@@ -5,7 +5,6 @@ public class Player extends Actor {
     private int animationSpeed = 10;  
     private int animationTimer = 0;
     private Ingredient inventoryIngredient;
-    private InventoryUI inventoryUI;
     
     GreenfootImage standing_img = new GreenfootImage("images/standing-char.png");
     GreenfootImage[] down = {
@@ -25,8 +24,7 @@ public class Player extends Actor {
         new GreenfootImage("images/up-char2.png")
     };
 
-    public Player(InventoryUI inventoryUI) {
-        this.inventoryUI = inventoryUI;
+    public Player() {
         this.inventoryIngredient = null;
         
         standing_img.scale(36, 63);
@@ -46,16 +44,8 @@ public class Player extends Actor {
     }
 
     public void act() {
-        
         movement();
       
-        //checkStorageCrateInteraction();
-        
-        //if (isTouching(Ingredient.class)){
-        //    Ingredient targetIngredient = (Ingredient) getOneIntersectingObject(Ingredient.class);
-        //    if (targetIngredient != null){
-        //    pickUpIngredient(targetIngredient);
-        // }}
     }
 
     public void animate(GreenfootImage[] imgs) {
@@ -120,35 +110,6 @@ public class Player extends Actor {
             count = 0;  // Reset animation when stopping
         }
     }
-    
-    //  private void pickUpIngredient(Storage ingredientStorage){
-    //     inventoryIngredient = ingredientStorage.createIngredient();
-    //     if(inventoryIngredient != null) {
-    //     inventoryUI.updateInventoryUI(inventoryIngredient.getRelativePath());
-    //     }
-    //     ingredientStorage.startCooldown();
-    //  }
-    
-
-    //  private void checkStorageCrateInteraction() {
-    //     if (Greenfoot.isKeyDown("e")) {
-    //         // List<Storage> storage = getObjectsInRange(60, Storage.class);
-    //         // if (!storage.isEmpty()) {
-    //         //     Storage nearestStorage = storage.get(0);
-    //             if (nearestStorage.on()) {
-    //                 pickUpIngredient(nearestStorage);
-    //             }
-    //         }
-    //     }
-    //  }
-
-     private void updateInventoryUI() {
-         if (inventoryIngredient != null) {
-             inventoryUI.updateInventoryUI(inventoryIngredient.getImage());
-         } else {
-             inventoryUI.updateInventoryUI(null);
-         }
-     }
 
      public Ingredient getInventoryIngredient(){
         return inventoryIngredient;
@@ -156,19 +117,14 @@ public class Player extends Actor {
 
      public void storeInventoryIngredient(Ingredient ingredient){
         inventoryIngredient = ingredient;
-        updateInventoryUI();
+        ingredient.setIngredientLocation(Location.INVENTORY);
+        ingredient.setLocation(MyWorld.INVENTORYX + MyWorld.INGREDIENT_ICON_OFFSET, MyWorld.INVENTORYY + MyWorld.INGREDIENT_ICON_OFFSET);
      }
 
      public Ingredient useInventoryIngredient(){
         Ingredient ingredient = inventoryIngredient;
         inventoryIngredient = null;
-        updateInventoryUI();
         return ingredient;
      }
 
 }
-
-
-
-
-

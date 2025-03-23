@@ -23,9 +23,10 @@ public class Storage extends Workstation {
                 newIngredient = IngredientFactory.createStandardIngredient("bread", 5);
                 break;
             case "carrot":
-                newIngredient = IngredientFactory.createVegetableIngredient("carrot", 10, 10, 30);
+                newIngredient = IngredientFactory.createVegetableIngredient("carrot", 10, 10, 15);
                 break;
         }
+        getWorld().addObject(newIngredient,MyWorld.INVENTORYX,MyWorld.INVENTORYY);
         return newIngredient;
     }
 

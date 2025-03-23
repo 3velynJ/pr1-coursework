@@ -31,7 +31,6 @@ public class Workstation extends Obstacle {
         // This method will be overridden by the storage subclass which acts differently to other workstations.
     }
 
-    // not sure even needed?
     // Checks for a single press of the 'e' button 
     private void checkForSingleEDownInteraction(Player player){
         if (Greenfoot.isKeyDown("e") && !eDown){
@@ -43,15 +42,4 @@ public class Workstation extends Obstacle {
         }
     }
 
-
-    // 
-    protected void updateWorkstationImage(String workstationName, Ingredient currentIngredient) {
-        GreenfootImage workstationImage = new GreenfootImage(workstationName + ".png");
-        if (currentIngredient != null) {
-            GreenfootImage ingredientIcon = currentIngredient.getImage();
-            ingredientIcon.scale(35, 35);
-            workstationImage.drawImage(ingredientIcon, 8, 8);
-        }
-        setImage(workstationImage);
-    }
 }

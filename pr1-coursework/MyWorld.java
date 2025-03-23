@@ -11,6 +11,10 @@ public class MyWorld extends World
     GreenfootImage background = new GreenfootImage("images/background.png");
     public static final int WORLD_HEIGHT = 600;
     public static final int WORLD_WIDTH = 1400;
+    public static final int INGREDIENT_ICON_OFFSET = 8;
+    public static final int INVENTORYX = 100;
+    public static final int INVENTORYY = 550;
+    public static final int BOTTOM_ROWY = 475;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -33,15 +37,15 @@ public class MyWorld extends World
     {
         InventoryUI inventoryUI = new InventoryUI();
         
-        Player player = new Player(inventoryUI);
+        Player player = new Player();
         addObject(player,500,250);
         
-        addObject(new Counter(), 1075, 475);
+        addObject(new Counter(), 1075, BOTTOM_ROWY);
         addObject(new Counter(), 1075, 425);
         // addObject(new Counter(), 1075, 375);
-        addObject(new Counter(), 1025, 475);
-        addObject(new Counter(), 975, 475);
-        addObject(new Counter(), 925, 475);
+        addObject(new Counter(), 1025, BOTTOM_ROWY);
+        addObject(new Counter(), 975, BOTTOM_ROWY);
+        addObject(new Counter(), 925, BOTTOM_ROWY);
         
         addObject(new Counter(), 1075, 25);
         addObject(new Counter(), 1025, 25);
@@ -71,12 +75,12 @@ public class MyWorld extends World
         addObject(new Counter(), 425, 325);
         addObject(new Counter(), 425, 375);
         addObject(new Counter(), 425, 425);
-        addObject(new Counter(), 425, 475);
+        addObject(new Counter(), 425, BOTTOM_ROWY);
         
-        addObject(inventoryUI, 100, 550);
+        addObject(inventoryUI, INVENTORYX, INVENTORYY);
         
-        addObject(new Hob(), 875, 475);
-        addObject(new ChoppingBoard(), 475, 475);
+        addObject(new Hob(875, BOTTOM_ROWY), 875, BOTTOM_ROWY);
+        addObject(new ChoppingBoard(475,BOTTOM_ROWY), 475, BOTTOM_ROWY);
         addObject(new Hatch(), 425, 250);
         
 
@@ -90,13 +94,13 @@ public class MyWorld extends World
         
         addObject(new Plate(), 675, 25);
         
-        addObject(new Storage("bread"), 675, 475);
-        addObject(new Counter(), 525, 475);
-        addObject(new Counter(), 575, 475);
-        addObject(new Counter(), 625, 475);
-        addObject(new Counter(), 725, 475);
-        addObject(new Counter(), 775, 475);
-        addObject(new Counter(), 825, 475);
+        addObject(new Storage("bread"), 675, BOTTOM_ROWY);
+        addObject(new Counter(), 525, BOTTOM_ROWY);
+        addObject(new Counter(), 575, BOTTOM_ROWY);
+        addObject(new Counter(), 625, BOTTOM_ROWY);
+        addObject(new Counter(), 725, BOTTOM_ROWY);
+        addObject(new Counter(), 775, BOTTOM_ROWY);
+        addObject(new Counter(), 825, BOTTOM_ROWY);
         
         
     }

@@ -13,6 +13,7 @@ public class Hatch extends Workstation
     
     public Hatch() {
         super(50, 100);
+        setImage("hatch.png");
         ticketList = new java.util.ArrayList<>();
         //Add the tickets to the list
         ticketList.add(new Ticket("bl"));
