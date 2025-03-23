@@ -4,7 +4,7 @@ public class Player extends Actor {
     private int count = 0;
     private int animationSpeed = 10;  
     private int animationTimer = 0;
-    private Ingredient playerInventory;
+    private Ingredient inventoryIngredient;
     private InventoryUI inventoryUI;
     
     GreenfootImage standing_img = new GreenfootImage("images/standing-char.png");
@@ -27,7 +27,7 @@ public class Player extends Actor {
 
     public Player(InventoryUI inventoryUI) {
         this.inventoryUI = inventoryUI;
-        this.playerInventory = null;
+        this.inventoryIngredient = null;
         
         standing_img.scale(36, 63);
         setImage(standing_img);
@@ -121,39 +121,51 @@ public class Player extends Actor {
         }
     }
     
-     //private void pickUpIngredient(IngredientStorage ingredientStorage){
-     //    playerInventory = ingredientStorage.getIngredient();
-     //    if(playerInventory != null) {
-     //    inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
-     //    }
-     //    ingredientStorage.startCooldown();
-     //}
+    //  private void pickUpIngredient(Storage ingredientStorage){
+    //     inventoryIngredient = ingredientStorage.createIngredient();
+    //     if(inventoryIngredient != null) {
+    //     inventoryUI.updateInventoryUI(inventoryIngredient.getRelativePath());
+    //     }
+    //     ingredientStorage.startCooldown();
+    //  }
     
-     //private void checkStorageCrateInteraction() {
-     //    if (Greenfoot.isKeyDown("e")) {
-     //        List<IngredientStorage> storage = getObjectsInRange(60, IngredientStorage.class);
-     //        if (!storage.isEmpty()) {
-     //            IngredientStorage nearestStorage = storage.get(0);
-     //            if (nearestStorage.canInteract()) {
-     //                pickUpIngredient(nearestStorage);
-     //            }
-     //        }
-     //    }
-     //}
-     public void updateInventoryUI(){
-    if(playerInventory != null) {
-        inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
-    } else {
-        inventoryUI.updateInventoryUI(null);
-    }
-}
-     public void setInventory(Ingredient ingredient) {
-         playerInventory = ingredient;
+
+    //  private void checkStorageCrateInteraction() {
+    //     if (Greenfoot.isKeyDown("e")) {
+    //         // List<Storage> storage = getObjectsInRange(60, Storage.class);
+    //         // if (!storage.isEmpty()) {
+    //         //     Storage nearestStorage = storage.get(0);
+    //             if (nearestStorage.on()) {
+    //                 pickUpIngredient(nearestStorage);
+    //             }
+    //         }
+    //     }
+    //  }
+
+     private void updateInventoryUI() {
+         if (inventoryIngredient != null) {
+             inventoryUI.updateInventoryUI(inventoryIngredient.getImage());
+         } else {
+             inventoryUI.updateInventoryUI(null);
+         }
      }
-     
-     public Ingredient getInventory() {
-         return playerInventory;
+
+     public Ingredient getInventoryIngredient(){
+        return inventoryIngredient;
      }
+
+     public void storeInventoryIngredient(Ingredient ingredient){
+        inventoryIngredient = ingredient;
+        updateInventoryUI();
+     }
+
+     public Ingredient useInventoryIngredient(){
+        Ingredient ingredient = inventoryIngredient;
+        inventoryIngredient = null;
+        updateInventoryUI();
+        return ingredient;
+     }
+
 }
 
 

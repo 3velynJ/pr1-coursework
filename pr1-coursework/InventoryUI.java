@@ -12,7 +12,7 @@ public class InventoryUI extends Actor
         updateInventoryUI(null);
     }
     
-    public void updateInventoryUI(String ingredientTexturePath){
+    public void updateInventoryUI(GreenfootImage ingredientIcon){
         
         GreenfootImage inventoryContainer = new GreenfootImage(50,50);
         inventoryContainer.setColor(Color.WHITE);
@@ -20,10 +20,9 @@ public class InventoryUI extends Actor
         inventoryContainer.setColor(Color.BLACK);
         inventoryContainer.drawRect(0,0,49,49);
         
-        if (ingredientTexturePath != null){
-            GreenfootImage ingredientTexture = new GreenfootImage(ingredientTexturePath);
-            ingredientTexture.scale(35,35);
-            inventoryContainer.drawImage(ingredientTexture,8,8);
+        if (ingredientIcon != null){
+            ingredientIcon.scale(35,35);
+            inventoryContainer.drawImage(ingredientIcon,8,8);
         }
         setImage(inventoryContainer);
     }

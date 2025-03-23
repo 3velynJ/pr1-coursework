@@ -41,9 +41,8 @@ public class Hatch extends Workstation
     protected void onInteraction(Player player) {
     
     //This is set to ingredient for testing but will be sandwich for final thing
-    if (player.getInventory() instanceof Ingredient) {
-        player.setInventory(null);
-        player.updateInventoryUI();
+    if (player.getInventoryIngredient() instanceof Ingredient) {
+        player.useInventoryIngredient();
         showMessage = true;
         messageTimer.mark();
         //getWorld().removeObject(currentTicket);

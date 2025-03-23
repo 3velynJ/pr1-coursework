@@ -1,23 +1,35 @@
 import greenfoot.*;
 
 public class Storage extends Workstation {
-    private Ingredient ingredient;
+    private String ingredientName;
     private SimpleTimer interactTimer;
     private boolean canInteract;
     private final int INTERACTION_COOLDOWN = 5000;
     private final String COOLDOWN_MESSAGE = "Storage on cooldown!";
 
-    public Storage(Ingredient ingredient) {
-        this.ingredient = ingredient;
+    public Storage(String ingredientName) {
+        setImage("storage.png");
+        this.ingredientName = ingredientName;
         this.interactTimer = new SimpleTimer();
         this.canInteract = true;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
+    // Creates the correct ingredient based on the ingredient name passed in 
+    // Ingredient objects are numbered so that multiple instances of the same ingredient can exist at once  
+    private Ingredient createIngredient(String ingredientName) {
+        Ingredient newIngredient = null;
+        switch (ingredientName) {
+            case "bread":
+                newIngredient = IngredientFactory.createStandardIngredient("bread", 5);
+                break;
+            case "carrot":
+                newIngredient = IngredientFactory.createVegetableIngredient("carrot", 10, 10, 30);
+                break;
+        }
+        return newIngredient;
     }
 
-    public boolean canInteract() {
+    private boolean canInteract() {
         if (!canInteract && interactTimer.millisElapsed() >= INTERACTION_COOLDOWN) {
             canInteract = true;
             removeCooldownMessage(); 
@@ -25,7 +37,7 @@ public class Storage extends Workstation {
         return canInteract;
     }
 
-    public void startCooldown() {
+    private void startCooldown() {
         canInteract = false;
         interactTimer.mark();
         showCooldownMessage(); 
@@ -42,9 +54,8 @@ public class Storage extends Workstation {
     @Override
     protected void onInteraction(Player player) {
         if (canInteract()) {
-            player.setInventory(this.ingredient);
-            if (player.getInventory() != null) {
-                player.updateInventoryUI();
+            if (player.getInventoryIngredient() == null) {
+                player.storeInventoryIngredient(createIngredient(ingredientName));
             }
             startCooldown();
         }

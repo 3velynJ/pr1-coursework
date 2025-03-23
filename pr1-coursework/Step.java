@@ -1,32 +1,28 @@
 import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Step {
-    // private Location location;
+    private Location location;
     private GreenfootImage icon;
     private boolean isIconChanged;
     private boolean isStepComplete;
     protected String ingredientName;
-    protected boolean isRuined;
-    protected String relativePath;
+    private boolean isRuined;
     
     
-    public Step(String name, String relativePath){
-        // this.location = location;
+    public Step(Location location, String name){
+        this.location = location;
         this.ingredientName = name;
         this.isIconChanged = false;
         this.isStepComplete = false;
         this.isRuined = false;
-        this.relativePath = relativePath;
-        setIcon(relativePath);
-        
     }
 
     public void prepareIngredient(){
     };
 
-    //public Location getLocation(){
-    //    return location;
-    //} 
+    public Location getLocation(){
+        return location;
+    } 
 
     public GreenfootImage getIcon(){
         isIconChanged = false;
@@ -42,9 +38,6 @@ public class Step {
         return isIconChanged;
     } 
 
-    public String getRelativePath() { 
-        return relativePath;
-          }
 
     public boolean getIsStepComplete(){
         return isStepComplete;
@@ -54,6 +47,14 @@ public class Step {
         isStepComplete = stepComplete;
     } 
 
+
+    public boolean getIsRuined(){
+        return isRuined;
+    } 
+
+    protected void setIsRuined(){
+        isRuined = true;
+    } 
 
     
 } 

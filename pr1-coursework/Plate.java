@@ -6,7 +6,7 @@ public class Plate extends Workstation
     }
     @Override
     protected void onInteraction(Player player) {
-        //This is where logic goes
+        //player.inventoryIngredient.setLocation(Location.PLATE);
     }
     @Override
     public void act(){

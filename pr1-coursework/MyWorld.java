@@ -9,6 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     GreenfootImage background = new GreenfootImage("images/background.png");
+    public static final int WORLD_HEIGHT = 600;
+    public static final int WORLD_WIDTH = 1400;
+
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -16,9 +19,9 @@ public class MyWorld extends World
     
     public MyWorld()
     {    
-        // Create a new world with 1100x500 cells with a cell size of 1x1 pixels.
-        super(1400, 600, 1);
-        background.scale(1400, 600);
+        // Create a new world with 1400x600 cells with a cell size of 1x1 pixels.
+        super(WORLD_WIDTH, WORLD_HEIGHT, 1);
+        background.scale(WORLD_WIDTH, WORLD_HEIGHT);
         setBackground(background);
         prepare();
     }
@@ -76,21 +79,18 @@ public class MyWorld extends World
         addObject(new ChoppingBoard(), 475, 475);
         addObject(new Hatch(), 425, 250);
         
-        Ingredient carrot = IngredientFactory.createVegetableIngredient("carrot",10,10,30);
-        Ingredient bread = IngredientFactory.createStandardIngredient("bread",5);
-        // ----- Ingredients should be instantiated in Storage class!!! ------
-        // pass in name string (e.g. "bread") to Storage object and create ingredient accordingly
+
         
-        addObject(new Storage(carrot), 1075, 375);
+        addObject(new Storage("carrot"), 1075, 375);
         addObject(new Counter(), 1075, 325);
-        addObject(new Storage(bread), 1075, 275);
+        addObject(new Storage("bread"), 1075, 275);
         addObject(new Counter(), 1075, 225);
-        addObject(new Storage(carrot), 1075, 175); 
+        addObject(new Storage("carrot"), 1075, 175); 
         addObject(new Counter(), 1075, 125);
         
         addObject(new Plate(), 675, 25);
         
-        addObject(new Storage(bread), 675, 475);
+        addObject(new Storage("bread"), 675, 475);
         addObject(new Counter(), 525, 475);
         addObject(new Counter(), 575, 475);
         addObject(new Counter(), 625, 475);
