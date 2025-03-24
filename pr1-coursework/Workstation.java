@@ -18,8 +18,8 @@ public class Workstation extends Obstacle {
         interactWithPlayer();
     }
 
-    // Get a list of Players in range of the workstation.
-    // Once a player is in range, and the list is not empty, call interaction on our player
+    // Gets a list of Players in range of the workstation
+    // Once a player is in range, and therefore the list is not empty, call interaction on our player, the first player in the list
     protected void interactWithPlayer() {
         List<Player> players = getObjectsInRange(INTERACTION_RANGE, Player.class);
         if (!players.isEmpty()) {
@@ -31,7 +31,7 @@ public class Workstation extends Obstacle {
         // This method will be overridden by the storage subclass which acts differently to other workstations.
     }
 
-    // Checks for a single press of the 'e' button 
+    // Checks for a single press of the 'e' button, calling the onInteraction method with each press
     private void checkForSingleEDownInteraction(Player player){
         if (Greenfoot.isKeyDown("e") && !eDown){
             onInteraction(player);
@@ -41,5 +41,6 @@ public class Workstation extends Obstacle {
             eDown = false;
         }
     }
+
 
 }

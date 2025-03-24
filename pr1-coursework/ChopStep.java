@@ -45,7 +45,6 @@ public class ChopStep extends Step{
         }
         if (chopCount > chopsRequired){
             setIcon("over-chopped.png");
-            setIsStepComplete(false);
             setIsRuined();
         }
         

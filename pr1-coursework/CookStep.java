@@ -26,7 +26,9 @@ public class CookStep extends Step{
         cook();
     };
     
-
+ // if the timer hasn't already been started then start the timer
+ // Once the timer has been started, check whether the timer has exceeded the cookTime of an ingredient
+ // If so set the ingredient to be cooked (cookstep is complete) and then call the burn method
     private void cook(){
         if (timerStarted){
             if (cookTime <= timer.millisElapsed()){
@@ -40,10 +42,11 @@ public class CookStep extends Step{
         }
     }
 
+    // Check whether the timer has exceeded the cookTime of an ingredient
+    // If so, burn the ingredient. The cookstep is no longer complete and cannot be completed - the ingrefient has been ruined an can no longer be used to make the dish
     private void burn(){
         if (burnTime <= timer.millisElapsed()){
             setIcon("burnt.png");
-            setIsStepComplete(false);
             setIsRuined();
         }
     

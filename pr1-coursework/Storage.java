@@ -14,16 +14,15 @@ public class Storage extends Workstation {
         this.canInteract = true;
     }
 
-    // Creates the correct ingredient based on the ingredient name passed in 
-    // Ingredient objects are numbered so that multiple instances of the same ingredient can exist at once  
-    private Ingredient createIngredient(String ingredientName) {
+    // Creates the correct ingredient based on the ingredient name passed in on construction
+    private Ingredient createIngredient() {
         Ingredient newIngredient = null;
         switch (ingredientName) {
             case "bread":
                 newIngredient = IngredientFactory.createStandardIngredient("bread", 5);
                 break;
             case "carrot":
-                newIngredient = IngredientFactory.createVegetableIngredient("carrot", 10, 10, 15);
+                newIngredient = IngredientFactory.createHobIngredient("carrot", 10, 10, 15);
                 break;
         }
         getWorld().addObject(newIngredient,MyWorld.INVENTORYX,MyWorld.INVENTORYY);
@@ -56,7 +55,7 @@ public class Storage extends Workstation {
     protected void onInteraction(Player player) {
         if (canInteract()) {
             if (player.getInventoryIngredient() == null) {
-                player.storeInventoryIngredient(createIngredient(ingredientName));
+                player.storeInventoryIngredient(createIngredient());
             }
             startCooldown();
         }
