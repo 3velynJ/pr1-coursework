@@ -1,5 +1,7 @@
 import greenfoot.*;
-
+/**
+ * Needs description
+ */
 public class CookStep extends Step{
     private final int MILLIS_PER_SECOND = 1000;
     private int cookTime;

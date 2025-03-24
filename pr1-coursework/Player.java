@@ -1,5 +1,8 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*; 
 import java.util.List;
+/**
+ * The logic for the player character
+ */
 public class Player extends Actor {
     private int count = 0;
     private int animationSpeed = 10;  
@@ -46,16 +49,7 @@ public class Player extends Actor {
     }
 
     public void act() {
-        
         movement();
-      
-        //checkStorageCrateInteraction();
-        
-        //if (isTouching(Ingredient.class)){
-        //    Ingredient targetIngredient = (Ingredient) getOneIntersectingObject(Ingredient.class);
-        //    if (targetIngredient != null){
-        //    pickUpIngredient(targetIngredient);
-        // }}
     }
 
     public void animate(GreenfootImage[] imgs) {
@@ -120,33 +114,13 @@ public class Player extends Actor {
             count = 0;  // Reset animation when stopping
         }
     }
-    
-     //private void pickUpIngredient(IngredientStorage ingredientStorage){
-     //    playerInventory = ingredientStorage.getIngredient();
-     //    if(playerInventory != null) {
-     //    inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
-     //    }
-     //    ingredientStorage.startCooldown();
-     //}
-    
-     //private void checkStorageCrateInteraction() {
-     //    if (Greenfoot.isKeyDown("e")) {
-     //        List<IngredientStorage> storage = getObjectsInRange(60, IngredientStorage.class);
-     //        if (!storage.isEmpty()) {
-     //            IngredientStorage nearestStorage = storage.get(0);
-     //            if (nearestStorage.canInteract()) {
-     //                pickUpIngredient(nearestStorage);
-     //            }
-     //        }
-     //    }
-     //}
      public void updateInventoryUI(){
     if(playerInventory != null) {
         inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
     } else {
         inventoryUI.updateInventoryUI(null);
     }
-}
+    }
      public void setInventory(Ingredient ingredient) {
          playerInventory = ingredient;
      }

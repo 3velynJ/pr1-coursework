@@ -1,5 +1,7 @@
 import greenfoot.*;
-
+/**
+ * A workstation where chopable ingredients can converted to their chopped version
+ */
 public class ChoppingBoard extends Workstation
 {
     public ChoppingBoard() {

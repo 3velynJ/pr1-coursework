@@ -1,10 +1,8 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
 /**
- * Write a description of class InventoryUI here.
+ * A UI display to show what is in the players inventory
  * 
- * @author (your name) 
- * @version (a version number or a date)
  */
 public class InventoryUI extends Actor
 {
@@ -26,14 +24,5 @@ public class InventoryUI extends Actor
             inventoryContainer.drawImage(ingredientTexture,8,8);
         }
         setImage(inventoryContainer);
-    }
-    
-    /**
-     * Act - do whatever the InventoryUI wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        
     }
 }

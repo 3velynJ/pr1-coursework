@@ -1,6 +1,9 @@
 import greenfoot.*;
 import java.util.List;
 
+/**
+ * A class that defines ageneric workstation
+ */
 public class Workstation extends Obstacle {
     private final int INTERACTION_RANGE = 60;
    public Workstation(int width, int height) {
