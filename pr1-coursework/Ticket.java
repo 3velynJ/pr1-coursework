@@ -1,10 +1,7 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
 /**
- * Write a description of class Ticket here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Displays the order information to the player
  */
 public class Ticket extends Actor
 {   

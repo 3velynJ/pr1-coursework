@@ -1,6 +1,9 @@
 import greenfoot.*;
 import java.util.List;
-
+/**
+ * A workstation where the player puts the finished sandwich to complete the order
+ * 
+ */
 public class Hatch extends Workstation
 {
     private Ticket currentTicket;
@@ -10,6 +13,7 @@ public class Hatch extends Workstation
     private final String MESSAGE = "Order Complete!";
     private final int MESSAGE_DURATION = 3000;
     private boolean showMessage;
+    private boolean isGameCompleted = false;
     
     public Hatch() {
         super(50, 100);
@@ -30,6 +34,16 @@ public class Hatch extends Workstation
         }
     }
     
+    public boolean gameCompleted() {
+        return isGameCompleted;
+    }
+
+    public void showGameCompleted() {
+        World world = getWorld();
+        Textbox gameOverTextbox = new Textbox("images/game-completed.png");
+        world.addObject(gameOverTextbox, world.getWidth() / 2, world.getHeight() / 2);
+    }
+    
     //Making use of built in greenfoot method to add the ticket in once 
     //the world has been constructed
     @Override
@@ -44,20 +58,18 @@ public class Hatch extends Workstation
     if (player.getInventory() instanceof Ingredient) {
         player.setInventory(null);
         player.updateInventoryUI();
-        showMessage = true;
         messageTimer.mark();
-        //getWorld().removeObject(currentTicket);
+        getWorld().removeObject(currentTicket);
 
-        //listIndex++;
-        //if (listIndex < ticketList.size()) {
-            //currentTicket = ticketList.get(listIndex);
-           // getWorld().addObject(currentTicket, 1250, 300);
-        //} else {
-           // currentTicket = null;
-           
-            //Game Over screen
-                    
-        //}
+        listIndex++;
+        if (listIndex < ticketList.size()) {
+            showMessage = true;
+            currentTicket = ticketList.get(listIndex);
+            getWorld().addObject(currentTicket, 1250, 300);
+        } else {
+            currentTicket = null;
+            isGameCompleted = true;
+        }
         
     }
     }

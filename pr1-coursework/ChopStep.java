@@ -1,5 +1,7 @@
 import greenfoot.*;
-
+/**
+ * Needs description
+ */
 public class ChopStep extends Step{
     private int chopsRequired;
     private int chopCount;
@@ -11,11 +13,6 @@ public class ChopStep extends Step{
         this.chopsRequired = chopsRequired;
         this.chopCount = 0;
         this.cDown = false;
-        // if (hasPrevStep){
-        //     setIcon(name + "-cooked.png");
-        // } else{
-        //     setIcon(name + ".png");
-        // }
     }
     
     public void prepareIngredient(){

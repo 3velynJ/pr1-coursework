@@ -1,3 +1,0 @@
-public enum Location {
-    STORAGE,HAND,CHOPPING_BOARD,HOB,OVEN,BIN,PLATE
-}

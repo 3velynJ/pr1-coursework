@@ -1,5 +1,7 @@
 import greenfoot.*;
-
+/**
+ * A workstation where cookable ingredients can converted to their cooked version
+ */
 public class Hob extends Workstation
 {   
     public Hob() {

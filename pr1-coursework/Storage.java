@@ -1,5 +1,7 @@
 import greenfoot.*;
-
+/**
+ * A workstation where ingredients are stored and can be taken out by the player
+ */
 public class Storage extends Workstation {
     private Ingredient ingredient;
     private SimpleTimer interactTimer;
