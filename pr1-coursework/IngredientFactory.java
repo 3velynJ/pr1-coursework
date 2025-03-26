@@ -8,7 +8,7 @@ public class IngredientFactory {
     public static Ingredient createStandardIngredient(String name, int chopsRequired){
         ArrayList<Step> steps = new ArrayList<Step>();
         steps.add(new ChopStep(name,chopsRequired,false));
-        Ingredient standardIngredient = new Ingredient(steps);
+        Ingredient standardIngredient = new Ingredient(name, steps);
         return standardIngredient;
     }
 
@@ -16,7 +16,7 @@ public class IngredientFactory {
         ArrayList<Step> steps = new ArrayList<Step>();
         steps.add(new ChopStep(name,chopsRequired,false));
         steps.add(new CookStep(name, cookTime, burnTime,true));
-        Ingredient vegetable = new Ingredient(steps);
+        Ingredient vegetable = new Ingredient(name, steps);
         return vegetable;
     }
 
@@ -24,7 +24,9 @@ public class IngredientFactory {
         ArrayList<Step> steps = new ArrayList<Step>();
         steps.add(new CookStep(name, cookTime, burnTime,false));
         steps.add(new ChopStep(name,chopsRequired,true));
-        Ingredient meat = new Ingredient(steps);
+        Ingredient meat = new Ingredient(name, steps);
         return meat;
     }
+    
+    // Meat ingredient is the same as veg ingredient??
 }

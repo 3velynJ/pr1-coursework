@@ -20,6 +20,7 @@ public class Hatch extends Workstation
         ticketList = new java.util.ArrayList<>();
         //Add the tickets to the list
         ticketList.add(new Ticket("bl"));
+        ticketList.add(new Ticket("blt"));
         listIndex = 0;
         currentTicket = ticketList.get(listIndex);
         messageTimer = new SimpleTimer();

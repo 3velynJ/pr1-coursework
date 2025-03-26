@@ -11,12 +11,14 @@ import java.util.ArrayList;
  */
 public class Ingredient {
     private ArrayList<Step> steps;
+    private String name;
     private Step currentStep;
     private boolean isPrepared;
 
     
-    public Ingredient(ArrayList<Step> steps) {
+    public Ingredient(String name, ArrayList<Step> steps) {
         this.steps = steps;
+        this.name = name;
         this.currentStep = steps.get(0);
         this.isPrepared = false;
     }
@@ -39,5 +41,9 @@ public class Ingredient {
     public boolean getIsIngredientPrepared(){
         return isPrepared;
     } 
+    
+    public String getName() {
+        return this.name;
+    }
 
 }
