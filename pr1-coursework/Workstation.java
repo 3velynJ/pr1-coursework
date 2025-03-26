@@ -2,7 +2,7 @@ import greenfoot.*;
 import java.util.List;
 
 /**
- * A class that defines ageneric workstation
+ * A class that defines a generic workstation
  */
 public class Workstation extends Obstacle {
     private final int INTERACTION_RANGE = 60;

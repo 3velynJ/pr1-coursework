@@ -96,15 +96,20 @@ public class MyWorld extends World {
         addObject(hatch, 425, 250);
 
         Ingredient carrot = IngredientFactory.createVegetableIngredient("carrot", 10, 10, 30);
+        // We dont have any vegetables that need cooking - redundant
         Ingredient bread = IngredientFactory.createStandardIngredient("bread", 5);
+        
+        Ingredient lettuce = IngredientFactory.createStandardIngredient("lettuce", 5);
+        Ingredient tomato = IngredientFactory.createStandardIngredient("tomato", 5);
+        Ingredient bacon = IngredientFactory.createMeatIngredient("bacon", 10, 10, 30);
         // ----- Ingredients should be instantiated in Storage class!!! ------
         // pass in name string (e.g. "bread") to Storage object and create ingredient accordingly
 
-        addObject(new Storage(carrot), 1075, 375);
+        addObject(new Storage(lettuce), 1075, 375);
         addObject(new Counter(), 1075, 325);
-        addObject(new Storage(bread), 1075, 275);
+        addObject(new Storage(tomato), 1075, 275);
         addObject(new Counter(), 1075, 225);
-        addObject(new Storage(carrot), 1075, 175);
+        addObject(new Storage(bacon), 1075, 175);
         addObject(new Counter(), 1075, 125);
 
         addObject(new Plate(), 675, 25);
@@ -116,6 +121,9 @@ public class MyWorld extends World {
         addObject(new Counter(), 725, 475);
         addObject(new Counter(), 775, 475);
         addObject(new Counter(), 825, 475);
+        
+        addObject(new Bin(), 925, 25);
+        addObject(new Sign(), 750, 550);
 
         timer = new Timer(300);
         addObject(timer, 300, 557);
@@ -131,6 +139,8 @@ public class MyWorld extends World {
         if (gameStarted && (timer != null &&timer.gameOver()|| hatch != null && hatch.gameCompleted()) && Greenfoot.isKeyDown("space")) {
             resetGame();
         }
+        
+        // showText((getObjects(Ticket.class)).toString(), 100, 100);
     }
 
     private void resetGame() {

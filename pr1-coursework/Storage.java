@@ -13,6 +13,8 @@ public class Storage extends Workstation {
         this.ingredient = ingredient;
         this.interactTimer = new SimpleTimer();
         this.canInteract = true;
+        
+        setImage(this.ingredient.getName() + "-storage.png");
     }
 
     public Ingredient getIngredient() {
