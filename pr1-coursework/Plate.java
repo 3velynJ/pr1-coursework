@@ -7,10 +7,16 @@ import java.util.ArrayList;
 public class Plate extends Workstation
 {   
     private ArrayList<String> plate; 
-    // Tried to use a stack but had to access ingredients from bottom of the sandwich upwards
-    // And need to reference elements by index to compare to recipe
+    private final String WRONG_INGREDIENT_MESSAGE = "Wrong ingredient!";
+    private final String SANDWICH_COMPLETED_MESSGAE  = "Sandwich completed!";
+    private SimpleTimer messageTimer;
+    private boolean showingMessage;
+    private final int MESSAGE_DURATION = 2000;
+
     public Plate() {
         this.plate = new ArrayList<String>();
+        this.messageTimer = new SimpleTimer();
+        this.showingMessage = false;
     }
     @Override
     protected void onInteraction(Player player) {
@@ -24,7 +30,7 @@ public class Plate extends Workstation
                     player.setInventory(null);
                     player.updateInventoryUI(); // Take ingredient from inventory and add to plate
                     if (this.plate.size() == recipe.size()) {
-                        getWorld().showText("sandwich done!", 300, 400);
+                        showMessage(SANDWICH_COMPLETED_MESSGAE);
                         this.plate = new ArrayList<String>(); // reset array
                         // player.setInventory(); 
                         // Give player sandwich
@@ -32,14 +38,29 @@ public class Plate extends Workstation
                         // make one inherit from other or create overarching "food" class?
                     }
                 } else {
-                    getWorld().showText("wrong ingredient!", 300, 400);
+                    showMessage(WRONG_INGREDIENT_MESSAGE);
                 }
             }
         }
     }
+    
+     private void showMessage(String message) {
+        showingMessage = true;
+        messageTimer.mark();
+        getWorld().showText(message, getX(), getY() + 30);
+    }
+
+    private void removeMessage() {
+        getWorld().showText("", getX(), getY() + 30);
+        showingMessage = false;
+    }
+    
     @Override
     public void act(){
         super.act();
         getWorld().showText(this.plate.toString(), 300, 300);
+        if (showingMessage && messageTimer.millisElapsed() >= MESSAGE_DURATION) {
+            removeMessage();
+        }
     }
 }

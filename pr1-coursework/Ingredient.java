@@ -1,49 +1,95 @@
 import greenfoot.*;
-import java.util.ArrayList;
 
 /**
- * This is the base class for an Ingredient. It is passed different Steps on
- * construction, depenting on what kind of ingredient it is.
- * 
- * 
- * @author (Joanna Grant)
- * @version (08/03/2025)
+ * Represents an ingredient in the game which can have different states depending on what workstation the player has put it into (e.g. chopped)
  */
-public class Ingredient {
-    private ArrayList<Step> steps;
+public class Ingredient extends Food {
     private String name;
-    private Step currentStep;
-    private boolean isPrepared;
+    private String relativeImagePath;
+    private boolean isCookable;
+    private boolean isChoppable;
+    private int timeToCook;
+    private int numberOfChops;
+    private boolean isCooked;
+    private boolean isChopped;
+    private boolean isBurnt;
 
-    
-    public Ingredient(String name, ArrayList<Step> steps) {
-        this.steps = steps;
+    public Ingredient(String name, boolean isCookable, boolean isChoppable, int timeToCook, int numberOfChops) {
         this.name = name;
-        this.currentStep = steps.get(0);
-        this.isPrepared = false;
+        this.relativeImagePath = "images/" + name + ".png";
+        this.isCookable = isCookable;
+        this.isChoppable = isChoppable;
+        this.timeToCook = timeToCook;
+        this.numberOfChops = numberOfChops;
+        this.isCooked = false;
+        this.isChopped = false;
+        this.isBurnt = false;
     }
     
-    public void moveToNextStep(){
-        int currentIndex = steps.indexOf(currentStep);
-        int nextIndex = currentIndex + 1;
-        if (nextIndex < (steps.size())){
-            currentStep = steps.get(nextIndex);
-        } 
-        else {
-            isPrepared = true;
-        }
-    }
-    
-    public String getRelativePath(){
-        return currentStep.getRelativePath();
+    // Copy constructor
+    public Ingredient(Ingredient other) {
+        this.name = other.name;
+        this.relativeImagePath = other.relativeImagePath;
+        this.isCookable = other.isCookable;
+        this.isChoppable = other.isChoppable;
+        this.timeToCook = other.timeToCook;
+        this.numberOfChops = other.numberOfChops;
+        this.isCooked = other.isCooked;
+        this.isChopped = other.isChopped;
     }
 
-    public boolean getIsIngredientPrepared(){
-        return isPrepared;
-    } 
-    
     public String getName() {
-        return this.name;
+        return name;
+    }
+    
+    public String getIngredientImagePath(){
+        return relativeImagePath;
+    }
+    
+    public boolean isCookable() {
+        return isCookable;
     }
 
+    public boolean isChoppable() {
+        return isChoppable;
+    }
+
+    public int getTimeToCook() {
+        return timeToCook;
+    }
+
+    public int getNumberOfChops() {
+        return numberOfChops;
+    }
+
+    public boolean isCooked() {
+        return isCooked;
+    }
+    
+    public boolean isChopped() {
+        return isChopped;
+    }
+    
+    public void cooked(){
+        isCooked = true; 
+        relativeImagePath = "images/" + name + "-cooked.png";
+        isCookable = false;
+    }
+    
+    public void chopped(){
+        isChopped = true;
+        relativeImagePath = "images/" + name + "-sliced.png";
+        isChoppable = false;
+    }
+    public boolean isBurnt() {
+        return isBurnt;
+    }
+
+    public void burnt() {
+        isBurnt = true;
+        isCookable = false;
+        isChoppable = false;
+        relativeImagePath = "images/burnedIngredient.png";
+    }
 }
+

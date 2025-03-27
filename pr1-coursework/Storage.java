@@ -45,8 +45,14 @@ public class Storage extends Workstation {
     
     @Override
     protected void onInteraction(Player player) {
+    
+        if (player.getInventory() != null && player.getInventory().isBurnt()) {
+            return;
+        }
+        
         if (canInteract()) {
-            player.setInventory(this.ingredient);
+            Ingredient newIngredient = new Ingredient(this.ingredient);
+            player.setInventory(newIngredient);
             if (player.getInventory() != null) {
                 player.updateInventoryUI();
             }

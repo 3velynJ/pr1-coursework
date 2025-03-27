@@ -9,6 +9,7 @@ public class Player extends Actor {
     private int animationTimer = 0;
     private Ingredient playerInventory;
     private InventoryUI inventoryUI;
+    private boolean canMove;
     
     GreenfootImage standing_img = new GreenfootImage("images/standing-char.png");
     GreenfootImage[] down = {
@@ -31,6 +32,7 @@ public class Player extends Actor {
     public Player(InventoryUI inventoryUI) {
         this.inventoryUI = inventoryUI;
         this.playerInventory = null;
+        this.canMove = true;
         
         standing_img.scale(36, 63);
         setImage(standing_img);
@@ -49,7 +51,9 @@ public class Player extends Actor {
     }
 
     public void act() {
-        movement();
+        if (canMove) {
+            movement();
+        }
     }
 
     public void animate(GreenfootImage[] imgs) {
@@ -116,7 +120,7 @@ public class Player extends Actor {
     }
      public void updateInventoryUI(){
     if(playerInventory != null) {
-        inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
+        inventoryUI.updateInventoryUI(playerInventory.getIngredientImagePath());
     } else {
         inventoryUI.updateInventoryUI(null);
     }
@@ -128,6 +132,9 @@ public class Player extends Actor {
      public Ingredient getInventory() {
          return playerInventory;
      }
+     public void setCanMove(boolean canMove) {
+        this.canMove = canMove;
+    }
 }
 
 

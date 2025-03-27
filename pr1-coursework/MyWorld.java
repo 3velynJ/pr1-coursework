@@ -9,6 +9,8 @@ public class MyWorld extends World {
     private Timer timer;
     private Hatch hatch;
     private boolean gameStarted = false;
+    private Textbox restartTextbox;
+    private boolean showingRestartTextbox = false;
 
     public MyWorld() {
         super(WORLD_WIDTH, WORLD_HEIGHT, 1);
@@ -20,10 +22,10 @@ public class MyWorld extends World {
         GreenfootImage startScreen = new GreenfootImage("images/menu.png");
         setBackground(startScreen);
 
-        Button startButton = new Button("Start Game", () -> startGame());
+        Button startButton = new Button("images/start-game-button.png", () -> startGame());
         addObject(startButton, WORLD_WIDTH / 2, WORLD_HEIGHT / 2);
 
-        Button instructionsButton = new Button("Instructions", () -> showInstructions());
+        Button instructionsButton = new Button("images/instructions-button.png", () -> showInstructions());
         addObject(instructionsButton, WORLD_WIDTH / 2, WORLD_HEIGHT / 2 + 100);
     }
 
@@ -88,20 +90,20 @@ public class MyWorld extends World {
         addObject(new Counter(), 425, 425);
         addObject(new Counter(), 425, 475);
 
-        addObject(inventoryUI, 100, 550);
+        addObject(inventoryUI, 150, 550);
+        Button resetButton = new Button("images/reset-icon.png", () -> showRestartTextbox());
+        addObject(resetButton, 50,550);
 
         addObject(new Hob(), 875, 475);
         addObject(new ChoppingBoard(), 475, 475);
         hatch = new Hatch();
         addObject(hatch, 425, 250);
 
-        Ingredient carrot = IngredientFactory.createVegetableIngredient("carrot", 10, 10, 30);
-        // We dont have any vegetables that need cooking - redundant
-        Ingredient bread = IngredientFactory.createStandardIngredient("bread", 5);
+        Ingredient bread = new Ingredient("bread", false, true, 0, 6); 
+        Ingredient bacon = new Ingredient("bacon", true, true, 5, 6);  // Name: "bacon", isCookable: true, isChoppable: false, timeToCook: 5 , numberOfChops: 6
+        Ingredient lettuce = new Ingredient("lettuce", false, true, 0, 7); 
+        Ingredient tomato = new Ingredient("tomato", false, true, 0, 3); 
         
-        Ingredient lettuce = IngredientFactory.createStandardIngredient("lettuce", 5);
-        Ingredient tomato = IngredientFactory.createStandardIngredient("tomato", 5);
-        Ingredient bacon = IngredientFactory.createMeatIngredient("bacon", 10, 10, 30);
         // ----- Ingredients should be instantiated in Storage class!!! ------
         // pass in name string (e.g. "bread") to Storage object and create ingredient accordingly
 
@@ -140,12 +142,33 @@ public class MyWorld extends World {
             resetGame();
         }
         
+        if (showingRestartTextbox) {
+            if (Greenfoot.isKeyDown("space")) {
+                removeObject(restartTextbox);
+                restartTextbox = null;
+                showingRestartTextbox = false;
+                removeObjects(getObjects(null));
+                prepare();
+            } else if (Greenfoot.isKeyDown("escape")) {
+                removeObject(restartTextbox);
+                restartTextbox = null;
+                showingRestartTextbox = false;
+            }
+        }
         // showText((getObjects(Ticket.class)).toString(), 100, 100);
     }
-
+    
     private void resetGame() {
         removeObjects(getObjects(null));
         gameStarted = false;
         showStartScreen();
+    }
+    
+    private void showRestartTextbox(){
+        if (!showingRestartTextbox) {
+            restartTextbox = new Textbox("images/restart-game.png");
+            addObject(restartTextbox, WORLD_WIDTH / 2, WORLD_HEIGHT / 2);
+            showingRestartTextbox = true;
+        }
     }
 }

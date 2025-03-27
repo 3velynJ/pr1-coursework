@@ -2,21 +2,15 @@ import greenfoot.*;
 
 /**
  * Used for the buttons that are needed for the start menu
- * 
  */
 public class Button extends Actor {
-    private String text;
     private Runnable action;
+    private GreenfootImage buttonImage;
 
-    public Button(String text, Runnable action) {
-        this.text = text;
+    public Button(String imagePath, Runnable action) {
         this.action = action;
-        updateImage();
-    }
-
-    private void updateImage() {
-        GreenfootImage image = new GreenfootImage(text, 40, Color.BLACK, Color.LIGHT_GRAY);
-        setImage(image);
+        this.buttonImage = new GreenfootImage(imagePath);
+        setImage(buttonImage);
     }
 
     public void act() {

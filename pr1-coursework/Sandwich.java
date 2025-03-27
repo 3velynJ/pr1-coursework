@@ -1,17 +1,11 @@
 /**
- * Sandwich which the player makes by putting ingredients into the plate accoring to the ticket
- * 
+ * Represents a sandwich which the player recieves when they put the ingredients specified by the ticket into the plate in the right order
  */
-public class Sandwich  
-{
+public class Sandwich extends Food {
     private int x;
     
     public Sandwich()
     {
     }
 
-    public int sampleMethod(int y)
-    {
-        return x + y;
-    }
 }

@@ -28,6 +28,6 @@ public class Workstation extends Obstacle {
     }
 
    protected void onInteraction(Player player) {
-       // This method will be overridden by subclasses
+       // This method is overridden by subclasses
      }
 }
