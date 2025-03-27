@@ -12,14 +12,17 @@ public class ChoppingBoard extends Workstation {
     private boolean chopKeyPressed;
 
     public ChoppingBoard() {
-        super(50, 50);
         currentIngredient = null;
         chopsRemaining = 0;
         isChopping = false;
         setImage("images/chopping-board.png");
         chopKeyPressed = false;
     }
-
+    
+    /**
+     * Handles interaction between the player and the chopping board.
+     * If the player is holding a choppable ingredient it will take it from them so they can chop it
+     */
     @Override
     protected void onInteraction(Player player) {
         if (player != null) {
@@ -34,13 +37,16 @@ public class ChoppingBoard extends Workstation {
                     player.updateInventoryUI();
                     chopsRemaining = currentIngredient.getNumberOfChops();
                     isChopping = true;
-                    player.setCanMove(false);
+                    player.setCanMove(false); //Prevents player movement (chopping started)
                     chopKeyPressed = false;
                 }
             }
         }
     }
-
+    
+    /**
+     * Handles chopping logic and returns the chopped ingredient to the player when chopping is done
+     */
     @Override
     public void act() {
         super.act();
@@ -58,12 +64,12 @@ public class ChoppingBoard extends Workstation {
 
             if (chopsRemaining <= 0) {
                 isChopping = false;
-                if (player != null && currentIngredient != null) {
+                if (currentIngredient != null) {
                     currentIngredient.chopped();
                     player.setInventory(currentIngredient);
                     player.updateInventoryUI();
                     currentIngredient = null;
-                    player.setCanMove(true);
+                    player.setCanMove(true); //Re-enables player movement (chopping ended)
                     getWorld().showText("", getX(), getY() - 40);
                 }
             }

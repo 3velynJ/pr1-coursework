@@ -16,11 +16,16 @@ public class Storage extends Workstation {
         
         setImage(this.ingredient.getName() + "-storage.png");
     }
-
+    /**
+     * Returns the type of ingredient stored in this storage
+     */
     public Ingredient getIngredient() {
         return ingredient;
     }
-
+    
+    /**
+     * Checks whether the cooldown to interact with the storage has ended
+     */
     public boolean canInteract() {
         if (!canInteract && interactTimer.millisElapsed() >= INTERACTION_COOLDOWN) {
             canInteract = true;
@@ -28,13 +33,19 @@ public class Storage extends Workstation {
         }
         return canInteract;
     }
-
+    
+    /**
+     * Shows a message while the storage is on cooldown so the play knows that they can't interact with it 
+     */
     public void startCooldown() {
         canInteract = false;
         interactTimer.mark();
         showCooldownMessage(); 
     }
-
+    
+    /**
+     * Removes the cooldown message when the cooldown ends 
+     */
     private void showCooldownMessage() {
         getWorld().showText(COOLDOWN_MESSAGE, getX(), getY() - 30);
     }
@@ -42,7 +53,11 @@ public class Storage extends Workstation {
     private void removeCooldownMessage() {
         getWorld().showText("", getX(), getY() - 30);
     }
-    
+    /**
+     * Handles the interaction between the player and the storage.
+     * Prevents the player from picking up an ingredient if they have a burnt one in their inventory.
+     * If can interact is true (the cooldown on taking items from the storage is over) then the player can pick up an ingredient the that storage
+     */
     @Override
     protected void onInteraction(Player player) {
     
@@ -60,6 +75,9 @@ public class Storage extends Workstation {
         }
     }
     
+    /**
+     * Calls the canInteract method to check if the cooldown on the storage has ended so that the player can interact with it again
+     */
     @Override
     public void act(){
         super.act();

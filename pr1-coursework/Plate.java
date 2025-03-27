@@ -18,6 +18,9 @@ public class Plate extends Workstation
         this.messageTimer = new SimpleTimer();
         this.showingMessage = false;
     }
+    /**
+     * Handles the interaction between the player and the plate
+     */
     @Override
     protected void onInteraction(Player player) {
         ArrayList<String> recipe = getWorld().getObjects(Ticket.class).get(0).getRecipe();
