@@ -33,15 +33,18 @@ public class Hob extends Workstation {
             player.setInventory(currentIngredient);
             player.updateInventoryUI();
             resetHob();
-        } else if (!isCooking && player.getInventory() != null && player.getInventory().isChopped() && player.getInventory().isCookable()) {
-            this.player = player;
-            currentIngredient = player.getInventory();
-            player.setInventory(null);
-            player.updateInventoryUI();
-            cookingTimeRemaining = currentIngredient.getTimeToCook();
-            player.setCanMove(false);
-            isCooking = true;
-            cookingTimer.mark();
+        } else if (!isCooking && player.getInventory() != null && player.getInventory() instanceof Ingredient) {
+            Ingredient ingredient = (Ingredient) player.getInventory();
+            if (ingredient.isChopped() && ingredient.isCookable()) {
+                this.player = player;
+                currentIngredient = ingredient;
+                player.setInventory(null);
+                player.updateInventoryUI();
+                cookingTimeRemaining = currentIngredient.getTimeToCook();
+                player.setCanMove(false);
+                isCooking = true;
+                cookingTimer.mark();
+            }
         }
     }
 
@@ -70,7 +73,7 @@ public class Hob extends Workstation {
                 player.setInventory(currentIngredient);
                 player.updateInventoryUI();
                 resetHob();
-            } else if (burnTimer.millisElapsed() >= 1000) {
+            } else if (burnTimer.millisElapsed() >= 3000) {
                     currentIngredient.burnt();
                     isBurned = true;
                     isReady = false;

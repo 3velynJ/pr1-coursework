@@ -42,7 +42,8 @@ public class Ingredient extends Food {
         return name;
     }
     
-    public String getIngredientImagePath(){
+    @Override
+    public String getRelativeImagePath(){
         return relativeImagePath;
     }
     

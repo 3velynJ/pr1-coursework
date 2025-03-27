@@ -1,12 +1,7 @@
 /**
  * The base class for all food items in the game (ingredients and sandwiches)
  */
-public class Food  
+public abstract class Food  
 {
-    /**
-     * Constructor for objects of class Food
-     */
-    public Food()
-    {
-    }
+        public abstract String getRelativeImagePath();
 }

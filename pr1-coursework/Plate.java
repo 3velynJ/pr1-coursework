@@ -21,26 +21,36 @@ public class Plate extends Workstation
     @Override
     protected void onInteraction(Player player) {
         ArrayList<String> recipe = getWorld().getObjects(Ticket.class).get(0).getRecipe();
-        Ingredient ingredient = player.getInventory();
-        if (ingredient != null) { //Check inventory full - might not need this
-            if (this.plate.size() < recipe.size()) { //Also might not need this - checked later?
-                String requiredIngredient = recipe.get(this.plate.size());
-                if (ingredient.getName().equals(requiredIngredient)) {
-                    this.plate.add(ingredient.getName());
-                    player.setInventory(null);
-                    player.updateInventoryUI(); // Take ingredient from inventory and add to plate
-                    if (this.plate.size() == recipe.size()) {
-                        showMessage(SANDWICH_COMPLETED_MESSGAE);
-                        this.plate = new ArrayList<String>(); // reset array
-                        // player.setInventory(); 
-                        // Give player sandwich
-                        // Inventory should be able to store ingredient and sandwich objects - 
-                        // make one inherit from other or create overarching "food" class?
-                    }
-                } else {
-                    showMessage(WRONG_INGREDIENT_MESSAGE);
+        if (player.getInventory() != null && player.getInventory() instanceof Ingredient) { 
+            Ingredient ingredient = (Ingredient) player.getInventory();
+            String requiredIngredient = recipe.get(this.plate.size());
+            if (ingredient.getName().equals(requiredIngredient) && isIngredientReady(ingredient, requiredIngredient)) {
+                //Checks if the ingredient is correct type and if it is ready
+                this.plate.add(ingredient.getName());
+                player.setInventory(null);
+                player.updateInventoryUI();
+                //Takes ingredient from player and adds to plate
+                if (this.plate.size() == recipe.size()) {
+                    showMessage(SANDWICH_COMPLETED_MESSGAE);
+                    this.plate = new ArrayList<String>(); //Resets plate
+                    Sandwich sandwich = new Sandwich();
+                    player.setInventory(sandwich); 
+                    player.updateInventoryUI();
                 }
+            } else {
+                 showMessage(WRONG_INGREDIENT_MESSAGE);
             }
+        }
+    }
+    
+    private boolean isIngredientReady(Ingredient ingredient, String requiredIngredient) {
+        //Accesses state of ingredient and returns t/f if it meets requirements
+        if (requiredIngredient.equals("bread") || requiredIngredient.equals("lettuce") || requiredIngredient.equals("tomato")) {
+            return ingredient.isChopped();
+        } else if (requiredIngredient.equals("bacon")) {
+            return ingredient.isCooked();
+        } else {
+            return false;
         }
     }
     

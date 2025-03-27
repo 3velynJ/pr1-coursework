@@ -7,7 +7,7 @@ public class Player extends Actor {
     private int count = 0;
     private int animationSpeed = 10;  
     private int animationTimer = 0;
-    private Ingredient playerInventory;
+    private Food playerInventory;
     private InventoryUI inventoryUI;
     private boolean canMove;
     
@@ -120,16 +120,16 @@ public class Player extends Actor {
     }
      public void updateInventoryUI(){
     if(playerInventory != null) {
-        inventoryUI.updateInventoryUI(playerInventory.getIngredientImagePath());
+        inventoryUI.updateInventoryUI(playerInventory.getRelativeImagePath());
     } else {
         inventoryUI.updateInventoryUI(null);
     }
     }
-     public void setInventory(Ingredient ingredient) {
-         playerInventory = ingredient;
+     public void setInventory(Food food) {
+         playerInventory = food;
      }
      
-     public Ingredient getInventory() {
+     public Food getInventory() {
          return playerInventory;
      }
      public void setCanMove(boolean canMove) {
