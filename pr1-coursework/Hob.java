@@ -1,7 +1,7 @@
 import greenfoot.*;
 /**
    * A workstation where cookable ingredients can be cooked
-**/
+*/
 public class Hob extends Workstation {
     private Ingredient currentIngredient;
     private Player player;
@@ -16,7 +16,6 @@ public class Hob extends Workstation {
     private boolean isBurned;
 
     public Hob() {
-        super(50, 50);
         currentIngredient = null;
         cookingTimeRemaining = 0;
         isCooking = false;
@@ -26,7 +25,11 @@ public class Hob extends Workstation {
         cookingTimer = new SimpleTimer();
         burnTimer = new SimpleTimer();
     }
-
+    
+    /**
+     * Handles interaction between the player and the hob.
+     * If the player is holding a cookable ingredient then it will take it from them so that it can be cooked
+     */
     @Override
     protected void onInteraction(Player player) {
         if (isReady && Greenfoot.isKeyDown("c")) {
@@ -41,13 +44,19 @@ public class Hob extends Workstation {
                 player.setInventory(null);
                 player.updateInventoryUI();
                 cookingTimeRemaining = currentIngredient.getTimeToCook();
-                player.setCanMove(false);
+                player.setCanMove(false); // Disables player movement (cooking started)
                 isCooking = true;
                 cookingTimer.mark();
             }
         }
     }
-
+    
+    /**
+     * Handles the logic for cooking ingredients.
+     * Can set an ingredient to a cooked state after a specific amount of time defined by the ingredient's timeToCook.
+     * If the ingredient is cooked then the player can press C to return it to their inventory.
+     * Can set an ingredient to a burnt state if the player doesnt pick it up fast enough 
+     */
     @Override
     public void act() {
         super.act();
@@ -69,19 +78,19 @@ public class Hob extends Workstation {
         }
 
         if (isReady) {
-            if (Greenfoot.isKeyDown("c")) {
+            if (Greenfoot.isKeyDown("c")) { 
                 player.setInventory(currentIngredient);
                 player.updateInventoryUI();
-                player.setCanMove(true);
+                player.setCanMove(true); // Re-enables player movement (cooking ended)
                 resetHob();
-            } else if (burnTimer.millisElapsed() >= 3000) {
+            } else if (burnTimer.millisElapsed() >= 1000) { //Burns the ingredient and then returns it to the player's inventory once the burn timer has reached 1 second
                     currentIngredient.burnt();
                     isBurned = true;
                     isReady = false;
                     getWorld().showText(BURNED_MESSAGE, getX(), getY() - 40);
                     player.setInventory(currentIngredient);
                     player.updateInventoryUI();
-                    player.setCanMove(true);
+                    player.setCanMove(true); // Re-enables player movement (cooking ended)
             }
         }
         if(isBurned){
@@ -90,7 +99,10 @@ public class Hob extends Workstation {
             }
         }
     }
-
+    
+    /**
+     * Removes the stored ingredient and resets all the attributes of the hob to false
+     */
     private void resetHob() {
         getWorld().showText("", getX(), getY() - 40);
         currentIngredient = null;

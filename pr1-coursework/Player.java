@@ -49,7 +49,10 @@ public class Player extends Actor {
         up[0].scale(63, 36);
         up[1].scale(63, 36);
     }
-
+    
+    /**
+     * Only allows the player to move if canMove is true
+     */
     public void act() {
         if (canMove) {
             movement();
@@ -64,13 +67,19 @@ public class Player extends Actor {
             count = (count + 1) % imgs.length;  // Loop between 0 and 1
         }
     }
-
+    
+    /**
+     * Causes the player to collide with obstacles instead of walking through them
+     */
     public void handleCollision(int x, int y){
         if (isTouching(Obstacle.class)) {
                 setLocation(x, y);
             }
     }
     
+    /**
+     * Handles the logic for player movemnt and controls 
+     */
     public void movement() {
         boolean isMoving = false;
         GreenfootImage[] direction = null;
@@ -118,6 +127,9 @@ public class Player extends Actor {
             count = 0;  // Reset animation when stopping
         }
     }
+    /**
+     * Updates the image in the UI to represent what is in the player's inventory
+     */
      public void updateInventoryUI(){
     if(playerInventory != null) {
         inventoryUI.updateInventoryUI(playerInventory.getRelativeImagePath());
@@ -132,6 +144,10 @@ public class Player extends Actor {
      public Food getInventory() {
          return playerInventory;
      }
+     
+     /**
+     * Sets whether the player can move or not
+     */
      public void setCanMove(boolean canMove) {
         this.canMove = canMove;
     }

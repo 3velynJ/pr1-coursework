@@ -8,10 +8,7 @@ public class Ticket extends Actor
 {   
     private String type;
     private ArrayList<String> recipe;
-    /**
-     * Act - do whatever the Ticket wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public Ticket(String type) {
         this.type = type;
         this.recipe = new ArrayList<String>();
