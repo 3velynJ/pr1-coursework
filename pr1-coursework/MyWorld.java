@@ -90,7 +90,7 @@ public class MyWorld extends World {
         addObject(new Counter(), 425, 425);
         addObject(new Counter(), 425, 475);
 
-        addObject(inventoryUI, 150, 550);
+        addObject(inventoryUI, 200, 550);
         Button resetButton = new Button("images/reset-icon.png", () -> showRestartTextbox());
         addObject(resetButton, 50,550);
 
@@ -128,7 +128,7 @@ public class MyWorld extends World {
         addObject(new Sign(), 750, 550);
 
         timer = new Timer(300);
-        addObject(timer, 300, 557);
+        addObject(timer, 315, 557);
     }
     public void act() {
         if (gameStarted && timer != null &&  timer.gameOver()) {
