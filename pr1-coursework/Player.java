@@ -104,11 +104,16 @@ public class Player extends Actor {
                 setImage(direction[1]);
             }
             animate(direction);
+            if (inventoryIngredient != null){
+                inventoryIngredient.setLocation(x + MyWorld.INGREDIENT_ICON_OFFSET,y + MyWorld.INGREDIENT_ICON_OFFSET);
+            }
+            
         } else {
             setRotation(0);
             setImage(standing_img);
             count = 0;  // Reset animation when stopping
         }
+    
     }
 
      public Ingredient getInventoryIngredient(){
@@ -118,7 +123,7 @@ public class Player extends Actor {
      public void storeInventoryIngredient(Ingredient ingredient){
         inventoryIngredient = ingredient;
         ingredient.setIngredientLocation(Location.INVENTORY);
-        ingredient.setLocation(MyWorld.INVENTORYX + MyWorld.INGREDIENT_ICON_OFFSET, MyWorld.INVENTORYY + MyWorld.INGREDIENT_ICON_OFFSET);
+        inventoryIngredient.setLocation(getX() + MyWorld.INGREDIENT_ICON_OFFSET, getY() + MyWorld.INGREDIENT_ICON_OFFSET);
      }
 
      public Ingredient useInventoryIngredient(){

@@ -3,7 +3,7 @@
 // Text strings are associated with each Enum so that error messages displayed to the user can referer to locations in words
 
 public enum Location {
-    INVENTORY("inventory"),CHOPPING_BOARD("chopping board"),HOB("hob"),OVEN("oven"),PLATE("plate");
+    INVENTORY("inventory"),CHOPPING_BOARD("chopping-board"),HOB("hob"),OVEN("oven"),PLATE("plate");
     public String locationText;
 
     Location(String valueString){

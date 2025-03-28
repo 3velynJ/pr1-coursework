@@ -11,9 +11,9 @@ public class MyWorld extends World
     GreenfootImage background = new GreenfootImage("images/background.png");
     public static final int WORLD_HEIGHT = 600;
     public static final int WORLD_WIDTH = 1400;
-    public static final int INGREDIENT_ICON_OFFSET = 8;
-    public static final int INVENTORYX = 100;
-    public static final int INVENTORYY = 550;
+    public static final int INGREDIENT_ICON_OFFSET = 15;
+    // public static final int INVENTORYX = 100;
+    // public static final int INVENTORYY = 550;
     public static final int BOTTOM_ROWY = 475;
 
     /**
@@ -46,6 +46,7 @@ public class MyWorld extends World
         addObject(new Counter(), 1025, BOTTOM_ROWY);
         addObject(new Counter(), 975, BOTTOM_ROWY);
         addObject(new Counter(), 925, BOTTOM_ROWY);
+        addObject(new Bin(), 925, 25);
         
         addObject(new Counter(), 1075, 25);
         addObject(new Counter(), 1025, 25);
@@ -77,10 +78,10 @@ public class MyWorld extends World
         addObject(new Counter(), 425, 425);
         addObject(new Counter(), 425, BOTTOM_ROWY);
         
-        addObject(inventoryUI, INVENTORYX, INVENTORYY);
+        //addObject(inventoryUI, INVENTORYX, INVENTORYY);
         
-        addObject(new Hob(875, BOTTOM_ROWY), 875, BOTTOM_ROWY);
-        addObject(new ChoppingBoard(475,BOTTOM_ROWY), 475, BOTTOM_ROWY);
+        addObject(new PrepArea(Location.HOB,875, BOTTOM_ROWY), 875, BOTTOM_ROWY);
+        addObject(new PrepArea(Location.CHOPPING_BOARD,475,BOTTOM_ROWY), 475, BOTTOM_ROWY);
         addObject(new Hatch(), 425, 250);
         
 

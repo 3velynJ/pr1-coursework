@@ -15,7 +15,7 @@ public class Storage extends Workstation {
     }
 
     // Creates the correct ingredient based on the ingredient name passed in on construction
-    private Ingredient createIngredient() {
+    private Ingredient createIngredient(Player player) {
         Ingredient newIngredient = null;
         switch (ingredientName) {
             case "bread":
@@ -25,7 +25,7 @@ public class Storage extends Workstation {
                 newIngredient = IngredientFactory.createHobIngredient("carrot", 10, 10, 15);
                 break;
         }
-        getWorld().addObject(newIngredient,MyWorld.INVENTORYX,MyWorld.INVENTORYY);
+        getWorld().addObject(newIngredient, player.getX() + MyWorld.INGREDIENT_ICON_OFFSET, player.getY() + MyWorld.INGREDIENT_ICON_OFFSET);
         return newIngredient;
     }
 
@@ -55,7 +55,7 @@ public class Storage extends Workstation {
     protected void onInteraction(Player player) {
         if (canInteract()) {
             if (player.getInventoryIngredient() == null) {
-                player.storeInventoryIngredient(createIngredient());
+                player.storeInventoryIngredient(createIngredient(player));
             }
             startCooldown();
         }

@@ -1,6 +1,6 @@
 import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class Step {
+public abstract class Step {
     private Location location;
     private GreenfootImage icon;
     private boolean isIconChanged;
@@ -17,9 +17,8 @@ public class Step {
         this.isRuined = false;
     }
 
-    // Called by 
-    public void prepareIngredient(){
-    };
+    // Called by the Ingredient when it is in the correct location
+    public abstract void prepareIngredient();
 
     public Location getLocation(){
         return location;
