@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 /**
- * Used for the buttons that are needed for the start menu
+ * Used to make buttons that can run a method when clicked
  */
 public class Button extends Actor {
     private Runnable action;
@@ -12,10 +12,10 @@ public class Button extends Actor {
         this.buttonImage = new GreenfootImage(imagePath);
         setImage(buttonImage);
     }
-
+    
     public void act() {
         if (Greenfoot.mouseClicked(this)) {
-            action.run();
+            action.run(); //Runs a method
         }
     }
 }

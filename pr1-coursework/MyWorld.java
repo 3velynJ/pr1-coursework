@@ -1,7 +1,6 @@
 import greenfoot.*;
 /**
  * The game world
- * 
  */
 public class MyWorld extends World {
     public static final int WORLD_WIDTH = 1400;
@@ -17,7 +16,9 @@ public class MyWorld extends World {
         showStartScreen();
     }
 
-    // The intial world which is the menu where the game can be started and the instrcutions can be viewed
+    /**
+     * Sets the intial world which is the menu where the game can be started and the instrcutions can be viewed
+     */
     private void showStartScreen() {
         GreenfootImage startScreen = new GreenfootImage("images/menu.png");
         setBackground(startScreen);
@@ -28,12 +29,17 @@ public class MyWorld extends World {
         Button instructionsButton = new Button("images/instructions-button.png", () -> showInstructions());
         addObject(instructionsButton, WORLD_WIDTH / 2, WORLD_HEIGHT / 2 + 100);
     }
-
+    /**
+     * Opens the instructions textbox when the instructions button on the start screen is clicked
+    */
     private void showInstructions() {
         Textbox instructionsTextbox = new Textbox("images/instructions.png");
         addObject(instructionsTextbox, WORLD_WIDTH / 2, WORLD_HEIGHT / 2);
     }
-
+    
+    /**
+     * Starts the game
+     */
     private void startGame() {
         if (!gameStarted) {
             gameStarted = true;
@@ -41,10 +47,12 @@ public class MyWorld extends World {
         }
     }
     
-    //loads the main game world
+    /**
+     * Adds all the objects for the game into the world
+     */
     private void prepare() {
         GreenfootImage background = new GreenfootImage("images/background.png");
-        removeObjects(getObjects(null)); // Clear the start menu
+        removeObjects(getObjects(null)); // Clears the start menu
 
         background.scale(WORLD_WIDTH, WORLD_HEIGHT);
         setBackground(background);
@@ -130,44 +138,54 @@ public class MyWorld extends World {
         timer = new Timer(300);
         addObject(timer, 300, 557);
     }
+    /**
+     * Checks for game over conditions, completion conditions, and handles game reset logic
+     */
     public void act() {
         if (gameStarted && timer != null &&  timer.gameOver()) {
-            timer.showGameOver();
+            timer.showGameOver(); //Calls the method which shows the game over textbox when the timer runs out
         }
         if (gameStarted && hatch != null && hatch.gameCompleted()){
             timer.stop();
-            hatch.showGameCompleted();
+            hatch.showGameCompleted(); //Calls the method which shows the game completed textbox if the player completes the game
         }
         if (gameStarted && (timer != null &&timer.gameOver()|| hatch != null && hatch.gameCompleted()) && Greenfoot.isKeyDown("space")) {
-            resetGame();
+            endGame(); //Ends the game when the textbox popup is closed
         }
         
         if (showingRestartTextbox) {
-            if (Greenfoot.isKeyDown("space")) {
+            if (Greenfoot.isKeyDown("space")) { //Resets the game
                 removeObject(restartTextbox);
                 restartTextbox = null;
                 showingRestartTextbox = false;
-                removeObjects(getObjects(null));
+                removeObjects(getObjects(null)); 
                 prepare();
-            } else if (Greenfoot.isKeyDown("escape")) {
+            } else if (Greenfoot.isKeyDown("escape")) { //Dismisses restartTextbox
                 removeObject(restartTextbox);
                 restartTextbox = null;
+                timer.resume();
                 showingRestartTextbox = false;
             }
         }
-        // showText((getObjects(Ticket.class)).toString(), 100, 100);
     }
     
-    private void resetGame() {
+    /**
+     * Ends the game by clearing the world and loading the start screen 
+     */
+    private void endGame() {
         removeObjects(getObjects(null));
         gameStarted = false;
-        showStartScreen();
+        showStartScreen(); // Calls the method with shows the start screen
     }
     
+    /**
+     * Method to show the restartTextbox
+     */
     private void showRestartTextbox(){
         if (!showingRestartTextbox) {
             restartTextbox = new Textbox("images/restart-game.png");
             addObject(restartTextbox, WORLD_WIDTH / 2, WORLD_HEIGHT / 2);
+            timer.stop(); //While the textbox is open the timer is paused
             showingRestartTextbox = true;
         }
     }

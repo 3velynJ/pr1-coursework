@@ -2,7 +2,6 @@ import greenfoot.*;
 import java.util.List;
 /**
  * A workstation where the player puts the finished sandwich to complete the order
- * 
  */
 public class Hatch extends Workstation
 {
@@ -16,8 +15,8 @@ public class Hatch extends Workstation
     private boolean isGameCompleted = false;
     
     public Hatch() {
-        super(50, 100);
-        ticketList = new java.util.ArrayList<>();
+        super(50, 100);// (width,height)
+        ticketList = new java.util.ArrayList<>(); //Initailises the list that the order tickets will be added to
         //Add the tickets to the list
         ticketList.add(new Ticket("bl"));
         ticketList.add(new Ticket("blt"));
@@ -27,6 +26,9 @@ public class Hatch extends Workstation
         showMessage=false;
     }
     
+    /**
+     * A method that is called to display a success mesasage when a order is completed
+     */
     private void showSuccessMessage() {
         if (messageTimer.millisElapsed() < MESSAGE_DURATION) {
             getWorld().showText(MESSAGE, getX(), getY() - 40);
@@ -35,23 +37,35 @@ public class Hatch extends Workstation
         }
     }
     
+    /**
+     * Method to check if the game has been completed
+     */
     public boolean gameCompleted() {
         return isGameCompleted;
     }
-
+    
+    /**
+     * Shows the game completed textbox
+     */
     public void showGameCompleted() {
         World world = getWorld();
         Textbox gameOverTextbox = new Textbox("images/game-completed.png");
         world.addObject(gameOverTextbox, world.getWidth() / 2, world.getHeight() / 2);
     }
     
-    //Making use of built in greenfoot method to add the ticket in once 
-    //the world has been constructed
+    /**
+     * Uses a built in greenfoot method to add the first ticket into the world it has been constructed
+     */
     @Override
     protected void addedToWorld(World world) {
         world.addObject(currentTicket, 1250, 300);
     }
     
+    /**
+     * Handles interaction between the player and the hatch.
+     * Handles the logic for completing orders and setting the next order.
+     * Once there are no more order tickets then isGameCompleted will be set to true - the game will end
+     */
     @Override
     protected void onInteraction(Player player) {
     
@@ -62,14 +76,14 @@ public class Hatch extends Workstation
         messageTimer.mark();
         getWorld().removeObject(currentTicket);
 
-        listIndex++;
+        listIndex++; //Increments listIndex to get the next ticket in the list
         if (listIndex < ticketList.size()) {
             showMessage = true;
-            currentTicket = ticketList.get(listIndex);
+            currentTicket = ticketList.get(listIndex); //Sets currentTicket to the next ticket to be completed
             getWorld().addObject(currentTicket, 1250, 300);
-        } else {
+        } else { //All tickets have been comnpleted
             currentTicket = null;
-            isGameCompleted = true;
+            isGameCompleted = true; 
         }
         
     }
