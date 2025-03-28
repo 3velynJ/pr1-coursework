@@ -44,7 +44,7 @@ public class Hob extends Workstation {
                 player.setInventory(null);
                 player.updateInventoryUI();
                 cookingTimeRemaining = currentIngredient.getTimeToCook();
-                player.setCanMove(false);
+                player.setCanMove(false); // Disables player movement (cooking started)
                 isCooking = true;
                 cookingTimer.mark();
             }
@@ -71,16 +71,17 @@ public class Hob extends Workstation {
             if (cookingTimeRemaining <= 0) {
                 getWorld().showText(READY_MESSAGE, getX(), getY() - 40);
                 isCooking = false;
+                currentIngredient.cooked();
                 isReady = true;
                 burnTimer.mark();
-                currentIngredient.cooked();
             }
         }
 
         if (isReady) {
-            if (Greenfoot.isKeyDown("c")) { //
+            if (Greenfoot.isKeyDown("c")) { 
                 player.setInventory(currentIngredient);
                 player.updateInventoryUI();
+                player.setCanMove(true); // Re-enables player movement (cooking ended)
                 resetHob();
             } else if (burnTimer.millisElapsed() >= 1000) { //Burns the ingredient and then returns it to the player's inventory once the burn timer has reached 1 second
                     currentIngredient.burnt();
@@ -89,11 +90,12 @@ public class Hob extends Workstation {
                     getWorld().showText(BURNED_MESSAGE, getX(), getY() - 40);
                     player.setInventory(currentIngredient);
                     player.updateInventoryUI();
+                    player.setCanMove(true); // Re-enables player movement (cooking ended)
             }
         }
         if(isBurned){
-            if(burnTimer.millisElapsed() >= 2000){
-                resetHob(); 
+            if(burnTimer.millisElapsed() >= 5000){
+                resetHob();
             }
         }
     }
@@ -107,7 +109,6 @@ public class Hob extends Workstation {
         isReady = false;
         isCooking = false;
         isBurned = false;
-        player.setCanMove(true); //Re-enables player movement (cooking ended)
     }
 }
 

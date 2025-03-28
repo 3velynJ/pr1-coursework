@@ -71,7 +71,6 @@ public class Plate extends Workstation
     @Override
     public void act(){
         super.act();
-        getWorld().showText(this.plate.toString(), 300, 300);
         if (showingMessage && messageTimer.millisElapsed() >= MESSAGE_DURATION) {
             removeMessage();
         }

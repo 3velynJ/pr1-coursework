@@ -1,5 +1,6 @@
 import greenfoot.*;
 import java.util.List;
+import java.util.Collections;
 /**
  * A workstation where the player puts the finished sandwich to complete the order
  */
@@ -20,6 +21,9 @@ public class Hatch extends Workstation
         //Add the tickets to the list
         ticketList.add(new Ticket("bl"));
         ticketList.add(new Ticket("blt"));
+
+        Collections.shuffle(ticketList); //Shuffles ticketList to randomise its order
+
         listIndex = 0;
         currentTicket = ticketList.get(listIndex);
         messageTimer = new SimpleTimer();
