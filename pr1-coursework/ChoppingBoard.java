@@ -28,17 +28,21 @@ public class ChoppingBoard extends Workstation {
         if (player != null) {
             this.player = player;
             if (!isChopping) {
-                if (player.getInventory() != null && player.getInventory().isChoppable()) {
-                    if (player.getInventory().isChopped()) {
-                        return;
+                if (player.getInventory() != null && player.getInventory() instanceof Ingredient) {
+                    Ingredient ingredient = (Ingredient) player.getInventory();
+                    //Cast inventory contents to ingredient type so methods can be used
+                    if (ingredient.isChoppable()) {
+                        if (ingredient.isChopped()) {
+                            return;
+                        }
+                        currentIngredient = ingredient;
+                        player.setInventory(null);
+                        player.updateInventoryUI();
+                        chopsRemaining = currentIngredient.getNumberOfChops();
+                        isChopping = true;
+                        player.setCanMove(false);
+                        chopKeyPressed = false;
                     }
-                    currentIngredient = player.getInventory();
-                    player.setInventory(null);
-                    player.updateInventoryUI();
-                    chopsRemaining = currentIngredient.getNumberOfChops();
-                    isChopping = true;
-                    player.setCanMove(false); //Prevents player movement (chopping started)
-                    chopKeyPressed = false;
                 }
             }
         }

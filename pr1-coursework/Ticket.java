@@ -19,15 +19,14 @@ public class Ticket extends Actor
         
         if (type == "blt") {
             recipe.add("bread");
-            recipe.add("bacon"); // Will be sliced/cooked versions of ingredients
+            recipe.add("bacon");
             recipe.add("lettuce");
             recipe.add("tomato");
             recipe.add("bread");
         } else if (type == "bl") {
-            // Bread sandwich for testing purposes
             recipe.add("bread");
-            //recipe.add("bacon");
-            //recipe.add("lettuce");
+            recipe.add("bacon");
+            recipe.add("lettuce");
             recipe.add("bread");
         } else if (type == "lt") {
             recipe.add("bread");

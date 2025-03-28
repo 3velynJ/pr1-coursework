@@ -70,7 +70,7 @@ public class Hatch extends Workstation
     protected void onInteraction(Player player) {
     
     //This is set to ingredient for testing but will be sandwich for final thing
-    if (player.getInventory() instanceof Ingredient) {
+    if (player.getInventory() instanceof Sandwich) {
         player.setInventory(null);
         player.updateInventoryUI();
         messageTimer.mark();

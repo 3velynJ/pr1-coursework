@@ -32,15 +32,22 @@ public class Hob extends Workstation {
      */
     @Override
     protected void onInteraction(Player player) {
-         if (!isCooking && player.getInventory() != null && player.getInventory().isChopped() && player.getInventory().isCookable()) {
-            this.player = player;
-            currentIngredient = player.getInventory();
-            player.setInventory(null);
+        if (isReady && Greenfoot.isKeyDown("c")) {
+            player.setInventory(currentIngredient);
             player.updateInventoryUI();
-            cookingTimeRemaining = currentIngredient.getTimeToCook();
-            player.setCanMove(false); //Prevents player movemnt (cooking started)
-            isCooking = true;
-            cookingTimer.mark();
+            resetHob();
+        } else if (!isCooking && player.getInventory() != null && player.getInventory() instanceof Ingredient) {
+            Ingredient ingredient = (Ingredient) player.getInventory();
+            if (ingredient.isChopped() && ingredient.isCookable()) {
+                this.player = player;
+                currentIngredient = ingredient;
+                player.setInventory(null);
+                player.updateInventoryUI();
+                cookingTimeRemaining = currentIngredient.getTimeToCook();
+                player.setCanMove(false);
+                isCooking = true;
+                cookingTimer.mark();
+            }
         }
     }
     

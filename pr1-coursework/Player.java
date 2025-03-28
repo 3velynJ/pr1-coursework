@@ -7,7 +7,7 @@ public class Player extends Actor {
     private int count = 0;
     private int animationSpeed = 10;  
     private int animationTimer = 0;
-    private Ingredient playerInventory;
+    private Food playerInventory;
     private InventoryUI inventoryUI;
     private boolean canMove;
     
@@ -131,24 +131,17 @@ public class Player extends Actor {
      * Updates the image in the UI to represent what is in the player's inventory
      */
      public void updateInventoryUI(){
-        if(playerInventory != null) {
-            inventoryUI.updateInventoryUI(playerInventory.getIngredientImagePath());
-        } else {
-            inventoryUI.updateInventoryUI(null);
-        }
+    if(playerInventory != null) {
+        inventoryUI.updateInventoryUI(playerInventory.getRelativeImagePath());
+    } else {
+        inventoryUI.updateInventoryUI(null);
     }
-    
-    /**
-     * Sets the player's inventoiry to an ingredient (this is called by the different workstations  to put things into the player inventory)
-     */
-     public void setInventory(Ingredient ingredient) {
-         playerInventory = ingredient;
+    }
+     public void setInventory(Food food) {
+         playerInventory = food;
      }
      
-     /**
-     * Returns what is cureently in the player inventory 
-     */
-     public Ingredient getInventory() {
+     public Food getInventory() {
          return playerInventory;
      }
      

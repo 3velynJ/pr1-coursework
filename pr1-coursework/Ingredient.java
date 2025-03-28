@@ -49,10 +49,11 @@ public class Ingredient extends Food {
         return name;
     }
     
+    @Override
+    public String getRelativeImagePath(){
     /**
      * Gets the relative file path of the ingredient image
      */
-    public String getIngredientImagePath(){
         return relativeImagePath;
     }
     
