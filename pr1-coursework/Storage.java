@@ -6,12 +6,19 @@ public class Storage extends Workstation {
     private boolean canInteract;
     private final int INTERACTION_COOLDOWN = 5000;
     private final String COOLDOWN_MESSAGE = "Storage on cooldown!";
+    private final int ICON_OFFSET = 9;
 
     public Storage(String ingredientName) {
-        setImage("storage.png");
         this.ingredientName = ingredientName;
         this.interactTimer = new SimpleTimer();
         this.canInteract = true;
+
+        GreenfootImage storageContainer = new GreenfootImage("storage.png");
+        GreenfootImage ingredientIcon = new GreenfootImage(ingredientName +".png");
+        ingredientIcon.scale(30,30);
+        storageContainer.drawImage(ingredientIcon,ICON_OFFSET,ICON_OFFSET);
+        setImage(storageContainer);
+        
     }
 
     // Creates the correct ingredient based on the ingredient name passed in on construction

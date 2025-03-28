@@ -12,9 +12,9 @@ public class MyWorld extends World
     public static final int WORLD_HEIGHT = 600;
     public static final int WORLD_WIDTH = 1400;
     public static final int INGREDIENT_ICON_OFFSET = 15;
-    // public static final int INVENTORYX = 100;
-    // public static final int INVENTORYY = 550;
+    public static final int SPACE_BETWEEN_COUNTERS = 50;
     public static final int BOTTOM_ROWY = 475;
+    public Timer timer;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -27,6 +27,7 @@ public class MyWorld extends World
         super(WORLD_WIDTH, WORLD_HEIGHT, 1);
         background.scale(WORLD_WIDTH, WORLD_HEIGHT);
         setBackground(background);
+        this.timer = new Timer(300);
         prepare();
     }
     /**
@@ -34,9 +35,7 @@ public class MyWorld extends World
      * That is: create the initial objects and add them to the world.
      */
     private void prepare()
-    {
-        InventoryUI inventoryUI = new InventoryUI();
-        
+    {   
         Player player = new Player();
         addObject(player,500,250);
         
@@ -78,8 +77,6 @@ public class MyWorld extends World
         addObject(new Counter(), 425, 425);
         addObject(new Counter(), 425, BOTTOM_ROWY);
         
-        //addObject(inventoryUI, INVENTORYX, INVENTORYY);
-        
         addObject(new PrepArea(Location.HOB,875, BOTTOM_ROWY), 875, BOTTOM_ROWY);
         addObject(new PrepArea(Location.CHOPPING_BOARD,475,BOTTOM_ROWY), 475, BOTTOM_ROWY);
         addObject(new Hatch(), 425, 250);
@@ -102,7 +99,10 @@ public class MyWorld extends World
         addObject(new Counter(), 725, BOTTOM_ROWY);
         addObject(new Counter(), 775, BOTTOM_ROWY);
         addObject(new Counter(), 825, BOTTOM_ROWY);
+
         
+        addObject(timer, 315, 557);
         
+    
     }
 }

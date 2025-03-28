@@ -58,14 +58,14 @@ public class Ingredient extends Actor {
                 if (currentStep.getIsRuined()){
                     getWorld().addObject(new Textbox("Uh oh! This ingredient is ruined.\nYou can't use it anymore.\nPlease put it in the bin and start again."), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
                 }
-                // If the ingredient is not runied but not prepared and the player is at the wrong location, throw an error message directing them to the correct location
-                else if ((location != currentStep.getLocation()) || (location == Location.PLATE && !isPrepared)){
-                    getWorld().addObject(new Textbox("Uh Oh! This is the wrong location.\nPlease take this ingredient to the " + (currentStep.getLocation().locationText)), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
-                } 
                 // If the ingredient is prepared and the location is trying to be set to anything other than the plate, throw an error message
                 else if (location != Location.PLATE && isPrepared){
                     getWorld().addObject(new Textbox("Uh Oh! This is the wrong location.\nPlease take this ingredient to the plate"), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
                 }
+                // If the ingredient is not runied but not prepared and the player is at the wrong location, throw an error message directing them to the correct location
+                else if ((location != currentStep.getLocation() && !isPrepared)){
+                    getWorld().addObject(new Textbox("Uh Oh! This is the wrong location.\nPlease take this ingredient to the " + (currentStep.getLocation().locationText)), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
+                } 
                 // The player is at the correct location so set the enum location
                 else {
                     myLocation = location;

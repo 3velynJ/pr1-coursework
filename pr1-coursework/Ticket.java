@@ -1,26 +1,49 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+// All Evelyns code 
+
+import greenfoot.*;
+import java.util.ArrayList;
 
 /**
- * Write a description of class Ticket here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Displays the order information to the player
  */
-public class Ticket extends Actor {
+public class Ticket extends Actor
+{   
     private String type;
-
-    /**
-     * Act - do whatever the Ticket wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private ArrayList<String> recipe;
+    
     public Ticket(String type) {
         this.type = type;
-        GreenfootImage ticketImage = new GreenfootImage(type + "-ticket.png");
-        ticketImage.scale(300, 600);
-        setImage(ticketImage);
+        this.recipe = new ArrayList<String>();
+        
+        GreenfootImage ticket_img = new GreenfootImage(type + "-ticket.png");
+        ticket_img.scale(300, 600);
+        setImage(ticket_img);
+        
+        if (type == "blt") {
+            recipe.add("bread");
+            recipe.add("bacon");
+            recipe.add("lettuce");
+            recipe.add("tomato");
+            recipe.add("bread");
+        } else if (type == "bl") {
+            recipe.add("bread");
+            recipe.add("bacon");
+            recipe.add("lettuce");
+            recipe.add("bread");
+        } else if (type == "lt") {
+            recipe.add("bread");
+            recipe.add("lettuce");
+            recipe.add("tomato");
+            recipe.add("bread");
+        }
     }
-
-    public void act() {
-        // Add your action code here.
+    
+    public ArrayList<String> getRecipe() {
+        return this.recipe;
+    }
+    
+    public void act()
+    {
+        
     }
 }
