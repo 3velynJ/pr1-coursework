@@ -7,6 +7,7 @@ public class Player extends Actor {
     private Ingredient inventoryIngredient;
     private CompletedDish completedDish;
     private Ticket currentTicket;
+    public boolean canMove;
     
     GreenfootImage standingImg = new GreenfootImage("images/standing-char.png");
     GreenfootImage[] down = {
@@ -29,6 +30,7 @@ public class Player extends Actor {
     public Player() {
         this.inventoryIngredient = null;
         this.completedDish = null;
+        this.canMove = true;
         final int PLAYER_WIDTH = 36;
         final int PLAYER_HEIGHT = 63;
         
@@ -49,7 +51,9 @@ public class Player extends Actor {
     }
 
     public void act() {
-        movement();
+        if (canMove) {
+            movement();
+        }
       
     }
 

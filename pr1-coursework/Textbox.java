@@ -13,11 +13,12 @@ public class Textbox extends Actor {
         this.timerStopped = false;
     }
 
-    // Removes itself, allowing the player to continue with the game, after the space bar is pressed
+    
     public void act(){
         if (!timerStopped) {
             ((MyWorld) getWorld()).timer.stop(); 
         }
+        // Removes itself and resumes the timer, allowing the player to continue with the game, after the space bar is pressed
         if (Greenfoot.isKeyDown("space")) {
             ((MyWorld) getWorld()).timer.resume(); 
             getWorld().removeObject(this);

@@ -1,5 +1,4 @@
 import greenfoot.*;
-import greenfoot.*;
 import java.util.List;
 import java.util.Collections;
 /**
@@ -48,13 +47,10 @@ public class Hatch extends Workstation
                 player.setTicket(currentTicket);
             } else { //All tickets have been completed so game has been won
                 currentTicket = null;
-                getWorld().addObject(new Textbox("YWell done! You completed the game!"), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
+                getWorld().addObject(new Textbox("Well done! You completed the game!"), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
                 ((MyWorld) getWorld()).timer.stop();
             }
         }
     }
     
-    @Override
-    public void act(){
-    }
 }

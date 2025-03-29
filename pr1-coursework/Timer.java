@@ -1,4 +1,4 @@
-// All other team-members work 
+// Modified other team-members work 
 import greenfoot.*;
 
 /**
@@ -13,6 +13,7 @@ public class Timer extends Actor {
     private final int ALERT_THRESHOLD = 30;
     private boolean timerRunning = true;
     private boolean isGameOver = false;
+    public Player player; 
 
     public Timer(int initialSeconds) {
         this.totalSeconds = initialSeconds;
@@ -70,9 +71,10 @@ public class Timer extends Actor {
     }
     
     /**
-     * Stops the timer
+     * Stops the timer and prevents the player from being able to move
      */
     public void stop() {
+        player.canMove = false;
         timerRunning = false;
     }
     
@@ -80,6 +82,7 @@ public class Timer extends Actor {
      * Resumes the timer
      */
     public void resume() {
+        player.canMove = true;
         timerRunning = true;
     }
 }

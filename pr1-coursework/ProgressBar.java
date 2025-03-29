@@ -1,33 +1,43 @@
 import greenfoot.*;
 
 public class ProgressBar extends Actor{
+    private GreenfootImage barImage;
     private final int BAR_WIDTH = 60;
     private final int BAR_HEIGHT = 10;
-    private int stagesComplete;
-    private int pixexlsPerStage;
+    private final int OUTLINE_PIXELS = 3;
+    private double fractionComplete;
 
 
-    public ProgressBar(int noOfStages){
-        this.stagesComplete = noOfStages;
-        this.pixexlsPerStage = (int) BAR_WIDTH / stagesComplete;
-        update();
-
+    public ProgressBar(){
+        this.barImage = new GreenfootImage(BAR_WIDTH + OUTLINE_PIXELS, BAR_HEIGHT + OUTLINE_PIXELS);
+        barImage.setColor(Color.WHITE);
+        barImage.fill();
+        setImage(barImage);
     }
 
     public void act(){
-        update();
+        //setPercentComplete(1/2);
     }
 
-    private void update(){
-        GreenfootImage barImage = new GreenfootImage(BAR_WIDTH + 2,BAR_HEIGHT +2);
-        barImage.setColor(Color.WHITE);
-        barImage.drawRect(0,0,BAR_WIDTH, BAR_HEIGHT);
-        barImage.setColor(Color.GREEN);
-        barImage.fillRect(2,2,pixexlsPerStage * stagesComplete,BAR_HEIGHT);
+    private void update() {
+        int progressWidth = (int) (fractionComplete * BAR_WIDTH);
+        // Only paint the progress bar if we have made some progress
+        if (progressWidth > 0) {
+            GreenfootImage progressImage = new GreenfootImage(progressWidth, BAR_HEIGHT);
+            progressImage.setColor(Color.GREEN);
+            progressImage.fill();
+            barImage.drawImage(progressImage, OUTLINE_PIXELS, OUTLINE_PIXELS);
+            setImage(barImage);
+        }
     }
 
-    public void incrementProgress(){
-        stagesComplete++;
+    public void setPercentComplete(double fraction){
+        if (fraction >= 1){
+            getWorld().removeObject(this);
+        } else{
+            fractionComplete = fraction;
+            update();
+        }
     }
 
 

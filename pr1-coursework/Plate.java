@@ -82,11 +82,5 @@ public class Plate extends Workstation{
             getWorld().removeObject(ingredient);
         }
     }
-   
-    
-    
-    @Override
-    public void act(){
-        super.act();
-    }
+
 }

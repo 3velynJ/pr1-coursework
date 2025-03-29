@@ -98,6 +98,10 @@ public class Ingredient extends Actor {
     public String getName(){
         return name;
     }
+
+    public ProgressBar getProgressBar(){
+        return currentStep.getProgressBar();
+    }
  
 
 }

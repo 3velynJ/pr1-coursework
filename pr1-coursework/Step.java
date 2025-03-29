@@ -7,6 +7,7 @@ public abstract class Step {
     private boolean isStepComplete;
     protected String ingredientName;
     private boolean isRuined;
+    protected ProgressBar progressBar;
     
     
     public Step(Location location, String name){
@@ -15,6 +16,7 @@ public abstract class Step {
         this.isIconChanged = false;
         this.isStepComplete = false;
         this.isRuined = false;
+        this.progressBar = new ProgressBar();
     }
 
     // Called by the Ingredient when it is in the correct location
@@ -65,7 +67,10 @@ public abstract class Step {
         return isRuined;
     } 
 
-    
+    public ProgressBar getProgressBar(){
+        return progressBar;
+    }
+
 
     
 } 

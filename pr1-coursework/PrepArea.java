@@ -4,6 +4,7 @@ public class PrepArea extends Workstation {
     private String name;
     private final int xCoOrd;
     private final int yCoOrd;
+    private final int BAR_OFFSET = -25;
 
     public PrepArea(Location location, int x, int y) {
         this.myLocation = location;
@@ -25,13 +26,15 @@ public class PrepArea extends Workstation {
             Ingredient playerIngredient = player.getInventoryIngredient();
             // If the player has an ingredient in the inventory and there isn't already an
             // ingredient on this prep area, then try set the Ingredient's enum location to
-            // the hob
+            // the prep area
             if (playerIngredient != null && currentIngredient == null) {
-                currentIngredient = player.useInventoryIngredient();
                 // If the enum location of the Ingredient was sucessfully set to that of this
                 // prep area, place the Ingredient on the prep area
-                if (currentIngredient.setIngredientLocation(myLocation)) {
+                if (playerIngredient.setIngredientLocation(myLocation)) {
+                    currentIngredient = player.useInventoryIngredient();
                     currentIngredient.setLocation(xCoOrd, yCoOrd);
+                    ProgressBar bar = currentIngredient.getProgressBar();
+                    getWorld().addObject(bar,xCoOrd,yCoOrd + BAR_OFFSET);
                 }
             }
             // If the player's inventory is empty but the prep area has an ingredient, move
@@ -49,10 +52,5 @@ public class PrepArea extends Workstation {
 
             }
         }
-    }
-
-    @Override
-    public void act(){
-        super.act();
     }
 }

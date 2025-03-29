@@ -38,6 +38,8 @@ public class MyWorld extends World
     {   
         Player player = new Player();
         addObject(player,500,250);
+        // Give the player to the timer so that it can stop the player from being able to move when the timer is paused
+        timer.player = player;
 
         // Adds default ticket to the world and gives it to the player 
         Ticket currentTicket = new Ticket("lt");
