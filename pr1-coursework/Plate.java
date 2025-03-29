@@ -79,8 +79,10 @@ public class Plate extends Workstation{
 
     private void deleteIngredients(){
         for (Ingredient ingredient : plate) {
+            
             getWorld().removeObject(ingredient);
         }
+        plate.clear();
     }
 
 }
