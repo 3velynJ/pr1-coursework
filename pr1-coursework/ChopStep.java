@@ -37,18 +37,21 @@ public class ChopStep extends Step{
     // Increases the total number of chops by 1 each time this method is called
     // If the total chops is the same as the required number of chops for a specific Ingredient, then the ingredient has completed the ChopStep
     // If the total number of chops is greater than the required number of chops for an Ingredient, then the ingredient has been ruined and cannot be used anymore
-    private void chop(){
+    private void chop() {
         chopCount++;
-        double fractionComplete = (double)chopCount/(double)chopsRequired;
-        progressBar.setPercentComplete(fractionComplete);
-        if (chopCount == chopsRequired){
+        // Only run while the chopping is incomplete
+         if (!getIsStepComplete() && !getIsRuined()) {
+            double fractionComplete = (double) chopCount / (double) chopsRequired;
+            progressBar.setPercentComplete(fractionComplete);
+        }
+        if (chopCount == chopsRequired) {
             setIcon(ingredientName + "-chopped.png");
             setIsStepComplete(true);
         }
-        if (chopCount > chopsRequired){
+        if (chopCount > chopsRequired) {
             setIcon("over-chopped.png");
             setIsRuined();
         }
-        
+
     }
 }
