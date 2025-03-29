@@ -4,10 +4,17 @@
 public class Sandwich extends Food {
     private String relativeImagePath;
     
+    /**
+     * Constructor
+     */
     public Sandwich()
     {
-        this.relativeImagePath = "images/sandwich.png";
+        this.relativeImagePath = "images/sandwich.png"; //Path to sandwich image
     }
+    
+    /**
+     * Returns realtive image path
+     */
     @Override
     public String getRelativeImagePath() {
         return this.relativeImagePath;
