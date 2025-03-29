@@ -1,16 +1,18 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*; 
 
 /**
- * Write a description of class Bin here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * A workstation to remove food from the player's inventory.
  */
 public class Bin extends Workstation
 {
     public Bin() {
         
     }
+    
+    /**
+     * Handles interaction between the player and the bin.
+     * This removes the food itemk that the player has in their inventory reguardless of its state (esentially 'binning' it)
+     */
     @Override
     protected void onInteraction(Player player) {
         player.setInventory(null);

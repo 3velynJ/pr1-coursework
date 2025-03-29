@@ -6,6 +6,6 @@ import greenfoot.*;
 public class Counter extends Obstacle
 {   
     public Counter() {
-        super(50, 50);
+        super(50, 50); //(width,height)
     }
 }

@@ -1,49 +1,143 @@
 import greenfoot.*;
-import java.util.ArrayList;
 
 /**
- * This is the base class for an Ingredient. It is passed different Steps on
- * construction, depenting on what kind of ingredient it is.
- * 
- * 
- * @author (Joanna Grant)
- * @version (08/03/2025)
+ * Represents an ingredient in the game which can have different states depending on what workstation the player has put it into (e.g. chopped)
  */
-public class Ingredient {
-    private ArrayList<Step> steps;
+public class Ingredient extends Food {
     private String name;
-    private Step currentStep;
-    private boolean isPrepared;
-
+    private String relativeImagePath;
+    private boolean isCookable;
+    private boolean isChoppable;
+    private int timeToCook;
+    private int numberOfChops;
+    private boolean isCooked;
+    private boolean isChopped;
+    private boolean isBurnt;
     
-    public Ingredient(String name, ArrayList<Step> steps) {
-        this.steps = steps;
+    /**
+     * Constructor
+     */
+    public Ingredient(String name, boolean isCookable, boolean isChoppable, int timeToCook, int numberOfChops) {
         this.name = name;
-        this.currentStep = steps.get(0);
-        this.isPrepared = false;
+        this.relativeImagePath = "images/" + name + ".png";
+        this.isCookable = isCookable;
+        this.isChoppable = isChoppable;
+        this.timeToCook = timeToCook;
+        this.numberOfChops = numberOfChops;
+        this.isCooked = false;
+        this.isChopped = false;
+        this.isBurnt = false;
     }
     
-    public void moveToNextStep(){
-        int currentIndex = steps.indexOf(currentStep);
-        int nextIndex = currentIndex + 1;
-        if (nextIndex < (steps.size())){
-            currentStep = steps.get(nextIndex);
-        } 
-        else {
-            isPrepared = true;
+    /**
+     * Copy constructor for the Ingredient class. 
+     * Creates a new Ingredient object with the same properties - used by storage to "clone" ingredients
+     */
+    public Ingredient(Ingredient other) {
+        this.name = other.name;
+        this.relativeImagePath = other.relativeImagePath;
+        this.isCookable = other.isCookable;
+        this.isChoppable = other.isChoppable;
+        this.timeToCook = other.timeToCook;
+        this.numberOfChops = other.numberOfChops;
+        this.isCooked = other.isCooked;
+        this.isChopped = other.isChopped;
+        this.isBurnt = other.isBurnt;
+    }
+
+    /**
+     * Gets the name of the ingredient
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * Gets the relative file path of the ingredient image
+     */
+    @Override
+    public String getRelativeImagePath(){
+        return relativeImagePath;
+    }
+    
+    /**
+     * Checks if the ingredient can be cooked
+     */
+    public boolean isCookable() {
+        return isCookable;
+    }
+
+    /**
+     * Checks if the ingredient can be chopped
+     */
+    public boolean isChoppable() {
+        return isChoppable;
+    }
+
+    /**
+     * Gets the time required to cook the ingredient
+     */
+    public int getTimeToCook() {
+        return timeToCook;
+    }
+
+    /**
+     * Gets the number of chops required to chop the ingredient
+     */
+    public int getNumberOfChops() {
+        return numberOfChops;
+    }
+
+    /**
+     * Checks if the ingredient is cooked
+     */
+    public boolean isCooked() {
+        return isCooked;
+    }
+    
+    /**
+     * Checks if the ingredient is chopped
+     */
+    public boolean isChopped() {
+        return isChopped;
+    }
+    
+    /**
+     * Sets the ingredient's state as cooked and updates its image path
+     */
+    public void cooked(){
+        if (!isBurnt) {
+           isCooked = true; 
+            relativeImagePath = "images/" + name + "-cooked.png";
+            isCookable = false; 
         }
     }
     
-    public String getRelativePath(){
-        return currentStep.getRelativePath();
+    /**
+     * Sets the ingredient's state as chopped and updates its image path
+     */
+    public void chopped(){
+        if (!isBurnt) {
+            isChopped = true;
+            relativeImagePath = "images/" + name + "-sliced.png";
+            isChoppable = false;
+        }
     }
-
-    public boolean getIsIngredientPrepared(){
-        return isPrepared;
-    } 
     
-    public String getName() {
-        return this.name;
+    /**
+     * Checks if the ingredient is burnt
+    */
+    public boolean isBurnt() {
+        return isBurnt;
     }
 
+    /**
+     * Sets the ingredient's state as burnt and updates its image path
+    */
+    public void burnt() {
+        isBurnt = true;
+        isCookable = false;
+        isChoppable = false;
+        relativeImagePath = "images/burnedIngredient.png";
+    }
 }

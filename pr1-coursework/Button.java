@@ -1,27 +1,21 @@
 import greenfoot.*;
 
 /**
- * Used for the buttons that are needed for the start menu
- * 
+ * Used to make buttons that can run a method when clicked
  */
 public class Button extends Actor {
-    private String text;
     private Runnable action;
+    private GreenfootImage buttonImage;
 
-    public Button(String text, Runnable action) {
-        this.text = text;
+    public Button(String imagePath, Runnable action) {
         this.action = action;
-        updateImage();
+        this.buttonImage = new GreenfootImage(imagePath);
+        setImage(buttonImage);
     }
-
-    private void updateImage() {
-        GreenfootImage image = new GreenfootImage(text, 40, Color.BLACK, Color.LIGHT_GRAY);
-        setImage(image);
-    }
-
+    
     public void act() {
         if (Greenfoot.mouseClicked(this)) {
-            action.run();
+            action.run(); //Runs a method
         }
     }
 }
