@@ -16,8 +16,9 @@ public class Hatch extends Workstation
     private boolean isGameCompleted = false;
     
     public Hatch() {
-        super(50, 100);// (width,height)
-        ticketList = new java.util.ArrayList<>(); //Initailises the list that the order tickets will be added to
+        super(50, 100);// (width, height)
+        ticketList = new java.util.ArrayList<>(); //Initialises the list that the order tickets will be added to
+        
         //Add the tickets to the list
         ticketList.add(new Ticket("bl"));
         ticketList.add(new Ticket("blt"));
@@ -26,8 +27,9 @@ public class Hatch extends Workstation
 
         listIndex = 0;
         currentTicket = ticketList.get(listIndex);
+        
         messageTimer = new SimpleTimer();
-        showMessage=false;
+        showMessage = false;
     }
     
     /**
@@ -38,6 +40,7 @@ public class Hatch extends Workstation
             getWorld().showText(MESSAGE, getX(), getY() - 40);
         } else {
             getWorld().showText("", getX(), getY() - 40);
+            showMessage = false;
         }
     }
     
@@ -72,25 +75,22 @@ public class Hatch extends Workstation
      */
     @Override
     protected void onInteraction(Player player) {
-    
-    //This is set to ingredient for testing but will be sandwich for final thing
-    if (player.getInventory() instanceof Sandwich) {
-        player.setInventory(null);
-        player.updateInventoryUI();
-        messageTimer.mark();
-        getWorld().removeObject(currentTicket);
+        if (player.getInventory() instanceof Sandwich) {
+            player.setInventory(null);
+            player.updateInventoryUI();
+            messageTimer.mark();
+            getWorld().removeObject(currentTicket);
 
-        listIndex++; //Increments listIndex to get the next ticket in the list
-        if (listIndex < ticketList.size()) {
-            showMessage = true;
-            currentTicket = ticketList.get(listIndex); //Sets currentTicket to the next ticket to be completed
-            getWorld().addObject(currentTicket, 1250, 300);
-        } else { //All tickets have been comnpleted
-            currentTicket = null;
-            isGameCompleted = true; 
+            listIndex++; //Increments listIndex to get the next ticket in the list
+            if (listIndex < ticketList.size()) {
+                showMessage = true;
+                currentTicket = ticketList.get(listIndex); //Sets currentTicket to the next ticket to be completed
+                getWorld().addObject(currentTicket, 1250, 300);
+            } else { //All tickets have been comnpleted
+                currentTicket = null;
+                isGameCompleted = true; 
+            }
         }
-        
-    }
     }
     
     @Override
