@@ -58,7 +58,9 @@ public class Player extends Actor {
             movement();
         }
     }
-
+    /**
+     * Animates the player when moving by cycling through images
+     */
     public void animate(GreenfootImage[] imgs) {
         animationTimer++;  // Increases every frame
 
@@ -130,20 +132,21 @@ public class Player extends Actor {
     /**
      * Updates the image in the UI to represent what is in the player's inventory
      */
-     public void updateInventoryUI(){
-    if(playerInventory != null) {
-        inventoryUI.updateInventoryUI(playerInventory.getRelativeImagePath());
-    } else {
-        inventoryUI.updateInventoryUI(null);
+    public void updateInventoryUI(){
+        if(playerInventory != null) {
+            inventoryUI.updateInventoryUI(playerInventory.getRelativeImagePath());
+        } else {
+            inventoryUI.updateInventoryUI(null);
+        }
     }
+    
+    public void setInventory(Food food) {
+        playerInventory = food;
     }
-     public void setInventory(Food food) {
-         playerInventory = food;
-     }
      
-     public Food getInventory() {
-         return playerInventory;
-     }
+    public Food getInventory() {
+        return playerInventory;
+    }
      
      /**
      * Sets whether the player can move or not
