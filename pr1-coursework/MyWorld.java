@@ -81,8 +81,6 @@ public class MyWorld extends World
         addObject(new PrepArea(Location.CHOPPING_BOARD,475,BOTTOM_ROWY), 475, BOTTOM_ROWY);
         addObject(new Hatch(), 425, 250);
         
-
-        
         addObject(new Storage("carrot"), 1075, 375);
         addObject(new Counter(), 1075, 325);
         addObject(new Storage("bread"), 1075, 275);

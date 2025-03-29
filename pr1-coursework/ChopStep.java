@@ -4,6 +4,7 @@ public class ChopStep extends Step{
     private int chopsRequired;
     private int chopCount;
     private boolean cDown;
+    private boolean showingProgressBar;
     
 
     public ChopStep(Location location, String name, int chopsRequired, boolean hasPrevStep){
@@ -11,6 +12,7 @@ public class ChopStep extends Step{
         this.chopsRequired = chopsRequired;
         this.chopCount = 0;
         this.cDown = false;
+        this.showingProgressBar = false;
         // Determine what the starting image for this step should be based on whether the ingredient has already been processed by a step before this
         if (hasPrevStep){
             setIcon(name + "-cooked.png");
@@ -25,6 +27,10 @@ public class ChopStep extends Step{
 
     // Checks for individual presses of the 'c' key and calls the chop method on each press
     private void checkForChop(){
+        if (!showingProgressBar){
+            // showProgressBar
+            showingProgressBar = true; 
+        }
         if (Greenfoot.isKeyDown("c") && !cDown){
             chop();
             cDown = true;

@@ -5,8 +5,10 @@ public class Player extends Actor {
     private int animationSpeed = 10;  
     private int animationTimer = 0;
     private Ingredient inventoryIngredient;
+    private CompletedDish completedDish;
+    public Ticket currentTicket;
     
-    GreenfootImage standing_img = new GreenfootImage("images/standing-char.png");
+    GreenfootImage standingImg = new GreenfootImage("images/standing-char.png");
     GreenfootImage[] down = {
         new GreenfootImage("images/down-char1.png"),
         new GreenfootImage("images/down-char2.png")
@@ -26,21 +28,25 @@ public class Player extends Actor {
 
     public Player() {
         this.inventoryIngredient = null;
+        this.completedDish = null;
+        this.currentTicket = new Ticket("blt");
+        final int PLAYER_WIDTH = 36;
+        final int PLAYER_HEIGHT = 63;
         
-        standing_img.scale(36, 63);
-        setImage(standing_img);
+        standingImg.scale(PLAYER_WIDTH, PLAYER_HEIGHT);
+        setImage(standingImg);
         
-        down[0].scale(63, 36);
-        down[1].scale(63, 36);
+        down[0].scale(PLAYER_HEIGHT, PLAYER_WIDTH);
+        down[1].scale(PLAYER_HEIGHT, PLAYER_WIDTH);
         
-        right[0].scale(36, 63);
-        right[1].scale(36, 63);
+        right[0].scale(PLAYER_WIDTH, PLAYER_HEIGHT);
+        right[1].scale(PLAYER_WIDTH, PLAYER_HEIGHT);
         
-        left[0].scale(36, 63);
-        left[1].scale(36, 63);
+        left[0].scale(PLAYER_WIDTH, PLAYER_HEIGHT);
+        left[1].scale(PLAYER_WIDTH, PLAYER_HEIGHT);
         
-        up[0].scale(63, 36);
-        up[1].scale(63, 36);
+        up[0].scale(PLAYER_HEIGHT, PLAYER_WIDTH);
+        up[1].scale(PLAYER_HEIGHT, PLAYER_WIDTH);
     }
 
     public void act() {
@@ -110,26 +116,39 @@ public class Player extends Actor {
             
         } else {
             setRotation(0);
-            setImage(standing_img);
+            setImage(standingImg);
             count = 0;  // Reset animation when stopping
         }
     
     }
 
-     public Ingredient getInventoryIngredient(){
+    public Ingredient getInventoryIngredient() {
         return inventoryIngredient;
-     }
+    }
 
-     public void storeInventoryIngredient(Ingredient ingredient){
+    public void storeInventoryIngredient(Ingredient ingredient) {
         inventoryIngredient = ingredient;
         ingredient.setIngredientLocation(Location.INVENTORY);
-        inventoryIngredient.setLocation(getX() + MyWorld.INGREDIENT_ICON_OFFSET, getY() + MyWorld.INGREDIENT_ICON_OFFSET);
-     }
+        inventoryIngredient.setLocation(getX() + MyWorld.INGREDIENT_ICON_OFFSET,
+                getY() + MyWorld.INGREDIENT_ICON_OFFSET);
+    }
 
-     public Ingredient useInventoryIngredient(){
+    public Ingredient useInventoryIngredient() {
         Ingredient ingredient = inventoryIngredient;
         inventoryIngredient = null;
         return ingredient;
-     }
+    }
+
+    public CompletedDish getCompletedDish() {
+        return completedDish;
+    }
+
+    public void setCompletedDish(CompletedDish dish) {
+        completedDish = dish;
+        if (dish != null) {
+            completedDish.setLocation(getX() + MyWorld.INGREDIENT_ICON_OFFSET,
+                    getY() + MyWorld.INGREDIENT_ICON_OFFSET);
+        }
+    }
 
 }

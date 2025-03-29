@@ -61,7 +61,7 @@ public class Storage extends Workstation {
     @Override
     protected void onInteraction(Player player) {
         if (canInteract()) {
-            if (player.getInventoryIngredient() == null) {
+            if (player.getInventoryIngredient() == null && player.getCompletedDish() == null) {
                 player.storeInventoryIngredient(createIngredient(player));
             }
             startCooldown();

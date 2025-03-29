@@ -1,3 +1,5 @@
+import greenfoot.*;
+
 public class Bin extends Workstation{
 
     public Bin() {

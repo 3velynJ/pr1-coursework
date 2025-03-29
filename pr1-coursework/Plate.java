@@ -1,14 +1,80 @@
 import greenfoot.*;
-
-public class Plate extends Workstation
-{
+import java.util.Stack;
+import java.util.ArrayList;
+/**
+ * A workstation where the sandwich is prepared according to the order ticket
+ */
+public class Plate extends Workstation{   
+    private ArrayList<String> plate; //Ingredients added to the plate 
+    
+    /**
+     * Constructor
+     */
     public Plate() {
-        setImage("plate.png");
+        this.plate = new ArrayList<String>(); //Empty plate
     }
+    /**
+     * Handles the interaction between the player and the plate
+     */
     @Override
     protected void onInteraction(Player player) {
-        //player.inventoryIngredient.setLocation(Location.PLATE);
+        Ingredient playerIngredient = player.getInventoryIngredient();
+        //Does the players inventory contain an ingredient
+        if (playerIngredient != null){
+            if (playerIngredient.getIsPrepared()) {
+                Ticket ticket = player.currentTicket;
+                // If it is the correct ingredient, add it to the plate 
+                if (isCorrectIngredient(playerIngredient, ticket)){
+                    addIngredient(player, playerIngredient);
+                    // Added ingredient so check if the order is complete 
+                    if (plate.size() == ticket.getRecipe().size()) {
+                        // Create the appropriate plate 
+                        createCompletedDish(player, ticket);
+                        getWorld().addObject(new Textbox("YAY! This dish is now complete!\n Please take it to the hatch to get a new ticket"), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
+                    }
+                } 
+                else{
+                    getWorld().addObject(new Textbox("Uh Oh! This is the wrong ingredient"), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
+                }
+
+            }
+            else{
+                getWorld().addObject(new Textbox("Uh Oh! This ingredient needs to be prepared first"), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
+            }
+        } 
     }
+    
+    /** 
+     * Checks if the ingredient is as required
+     */
+    private boolean isCorrectIngredient(Ingredient ingredient, Ticket ticket) {
+        int ingregredientIndex = this.plate.size();
+        String requiredIngredient = ticket.getRecipe().get(ingregredientIndex);
+        return ingredient.getName().equals(requiredIngredient);
+    }
+    
+    
+    /** 
+     * Adds the ingredient to the plate and removes it from the player 
+     */
+    private void addIngredient(Player player, Ingredient ingredient) {
+        player.useInventoryIngredient();
+        this.plate.add(ingredient.getName());
+    }
+
+    
+    /**
+     * Completes the completed dish and gives it to the player
+     */
+    private void createCompletedDish(Player player, Ticket ticket) {
+        CompletedDish dish = new CompletedDish(ticket);
+        getWorld().addObject(dish, player.getX() + MyWorld.INGREDIENT_ICON_OFFSET,
+                player.getY() + MyWorld.INGREDIENT_ICON_OFFSET);
+        player.setCompletedDish(dish);
+    }
+   
+    
+    
     @Override
     public void act(){
         super.act();

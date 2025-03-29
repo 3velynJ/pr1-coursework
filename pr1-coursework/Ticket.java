@@ -41,6 +41,10 @@ public class Ticket extends Actor
     public ArrayList<String> getRecipe() {
         return this.recipe;
     }
+
+    public String getType(){
+        return type;
+    }
     
     public void act()
     {

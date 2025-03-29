@@ -10,13 +10,15 @@ import java.util.ArrayList;
  * @version (08/03/2025)
  */
 public class Ingredient extends Actor {
+    private String name;
     private ArrayList<Step> steps;
     private Step currentStep;
     private Location myLocation;
     private boolean isPrepared;
 
     
-    public Ingredient(ArrayList<Step> steps) {
+    public Ingredient(String name, ArrayList<Step> steps) {
+        this.name = name;
         this.steps = steps;
         this.currentStep = steps.get(0);
         this.isPrepared = false;
@@ -78,7 +80,7 @@ public class Ingredient extends Actor {
 
     // Checks if all of the steps have been completed, moving on to the next step if not
     // If all steps have been completed, the isPrepared field is set to true
-    public void moveToNextStep(){
+    private void moveToNextStep(){
         int currentIndex = steps.indexOf(currentStep);
         int nextIndex = currentIndex + 1;
         if (nextIndex < (steps.size())){
@@ -87,6 +89,14 @@ public class Ingredient extends Actor {
         else {
             isPrepared = true;
         }
+    }
+
+    public boolean getIsPrepared(){
+        return isPrepared;
+    }
+
+    public String getName(){
+        return name;
     }
  
 
