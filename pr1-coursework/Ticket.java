@@ -6,29 +6,32 @@ import java.util.ArrayList;
  */
 public class Ticket extends Actor
 {   
-    private String type;
-    private ArrayList<String> recipe;
+    private String type; //Type of sandwich
+    private ArrayList<String> recipe; //List of ingredients
     
+    /**
+     * Constructor
+     */
     public Ticket(String type) {
         this.type = type;
-        this.recipe = new ArrayList<String>();
+        this.recipe = new ArrayList<String>(); //Empty recipe
         
         GreenfootImage ticket_img = new GreenfootImage(type + "-ticket.png");
         ticket_img.scale(300, 600);
         setImage(ticket_img);
         
-        if (type == "blt") {
+        if (type.equals("blt")) {
             recipe.add("bread");
             recipe.add("bacon");
             recipe.add("lettuce");
             recipe.add("tomato");
             recipe.add("bread");
-        } else if (type == "bl") {
+        } else if (type.equals("bl")) {
             recipe.add("bread");
             recipe.add("bacon");
             recipe.add("lettuce");
             recipe.add("bread");
-        } else if (type == "lt") {
+        } else if (type.equals("lt")) {
             recipe.add("bread");
             recipe.add("lettuce");
             recipe.add("tomato");
@@ -36,6 +39,9 @@ public class Ticket extends Actor
         }
     }
     
+    /**
+     * Returns then list of ingredients
+     */
     public ArrayList<String> getRecipe() {
         return this.recipe;
     }

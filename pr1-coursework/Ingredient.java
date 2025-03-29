@@ -13,7 +13,10 @@ public class Ingredient extends Food {
     private boolean isCooked;
     private boolean isChopped;
     private boolean isBurnt;
-
+    
+    /**
+     * Constructor
+     */
     public Ingredient(String name, boolean isCookable, boolean isChoppable, int timeToCook, int numberOfChops) {
         this.name = name;
         this.relativeImagePath = "images/" + name + ".png";
@@ -49,11 +52,11 @@ public class Ingredient extends Food {
         return name;
     }
     
-    @Override
-    public String getRelativeImagePath(){
     /**
      * Gets the relative file path of the ingredient image
      */
+    @Override
+    public String getRelativeImagePath(){
         return relativeImagePath;
     }
     
@@ -103,18 +106,22 @@ public class Ingredient extends Food {
      * Sets the ingredient's state as cooked and updates its image path
      */
     public void cooked(){
-        isCooked = true; 
-        relativeImagePath = "images/" + name + "-cooked.png";
-        isCookable = false;
+        if (!isBurnt) {
+           isCooked = true; 
+            relativeImagePath = "images/" + name + "-cooked.png";
+            isCookable = false; 
+        }
     }
     
     /**
      * Sets the ingredient's state as chopped and updates its image path
      */
     public void chopped(){
-        isChopped = true;
-        relativeImagePath = "images/" + name + "-sliced.png";
-        isChoppable = false;
+        if (!isBurnt) {
+            isChopped = true;
+            relativeImagePath = "images/" + name + "-sliced.png";
+            isChoppable = false;
+        }
     }
     
     /**
