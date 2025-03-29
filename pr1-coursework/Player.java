@@ -6,7 +6,7 @@ public class Player extends Actor {
     private int animationTimer = 0;
     private Ingredient inventoryIngredient;
     private CompletedDish completedDish;
-    public Ticket currentTicket;
+    private Ticket currentTicket;
     
     GreenfootImage standingImg = new GreenfootImage("images/standing-char.png");
     GreenfootImage[] down = {
@@ -29,7 +29,6 @@ public class Player extends Actor {
     public Player() {
         this.inventoryIngredient = null;
         this.completedDish = null;
-        this.currentTicket = new Ticket("blt");
         final int PLAYER_WIDTH = 36;
         final int PLAYER_HEIGHT = 63;
         
@@ -113,6 +112,9 @@ public class Player extends Actor {
             if (inventoryIngredient != null){
                 inventoryIngredient.setLocation(x + MyWorld.INGREDIENT_ICON_OFFSET,y + MyWorld.INGREDIENT_ICON_OFFSET);
             }
+            if (completedDish != null){
+                completedDish.setLocation(x + MyWorld.INGREDIENT_ICON_OFFSET,y + MyWorld.INGREDIENT_ICON_OFFSET);
+            }
             
         } else {
             setRotation(0);
@@ -149,6 +151,18 @@ public class Player extends Actor {
             completedDish.setLocation(getX() + MyWorld.INGREDIENT_ICON_OFFSET,
                     getY() + MyWorld.INGREDIENT_ICON_OFFSET);
         }
+    }
+
+    public Ticket getTicket() {
+        return currentTicket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        if (currentTicket != null) {
+            getWorld().removeObject(currentTicket);
+        }
+        currentTicket = ticket;
+        getWorld().addObject(currentTicket, 1250, 300);
     }
 
 }

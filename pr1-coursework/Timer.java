@@ -70,15 +70,6 @@ public class Timer extends Actor {
     }
     
     /**
-     * Shows the gameOver textbox
-     */
-    public void showGameOver() {
-        World world = getWorld();
-        Textbox gameOverTextbox = new Textbox("images/game-over.png");
-        world.addObject(gameOverTextbox, world.getWidth() / 2, world.getHeight() / 2);
-    }
-    
-    /**
      * Stops the timer
      */
     public void stop() {

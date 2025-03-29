@@ -15,7 +15,6 @@ public class Storage extends Workstation {
 
         GreenfootImage storageContainer = new GreenfootImage("storage.png");
         GreenfootImage ingredientIcon = new GreenfootImage(ingredientName +".png");
-        ingredientIcon.scale(30,30);
         storageContainer.drawImage(ingredientIcon,ICON_OFFSET,ICON_OFFSET);
         setImage(storageContainer);
         
@@ -28,11 +27,18 @@ public class Storage extends Workstation {
             case "bread":
                 newIngredient = IngredientFactory.createStandardIngredient("bread", 5);
                 break;
-            case "carrot":
-                newIngredient = IngredientFactory.createHobIngredient("carrot", 10, 10, 15);
+            case "lettuce":
+                newIngredient = IngredientFactory.createStandardIngredient("lettuce", 7);
+                break;
+            case "tomato":
+                newIngredient = IngredientFactory.createStandardIngredient("tomato", 3);
+                break;
+            case "bacon":
+                newIngredient = IngredientFactory.createHobIngredient("bacon", 10, 10, 15);
                 break;
         }
-        getWorld().addObject(newIngredient, player.getX() + MyWorld.INGREDIENT_ICON_OFFSET, player.getY() + MyWorld.INGREDIENT_ICON_OFFSET);
+        getWorld().addObject(newIngredient, player.getX() + MyWorld.INGREDIENT_ICON_OFFSET,
+                player.getY() + MyWorld.INGREDIENT_ICON_OFFSET);
         return newIngredient;
     }
 

@@ -38,6 +38,11 @@ public class MyWorld extends World
     {   
         Player player = new Player();
         addObject(player,500,250);
+
+        // Adds default ticket to the world and gives it to the player 
+        Ticket currentTicket = new Ticket("lt");
+        player.setTicket(currentTicket);
+
         
         addObject(new Counter(), 1075, BOTTOM_ROWY);
         addObject(new Counter(), 1075, 425);
@@ -81,11 +86,11 @@ public class MyWorld extends World
         addObject(new PrepArea(Location.CHOPPING_BOARD,475,BOTTOM_ROWY), 475, BOTTOM_ROWY);
         addObject(new Hatch(), 425, 250);
         
-        addObject(new Storage("carrot"), 1075, 375);
+        addObject(new Storage("lettuce"), 1075, 375);
         addObject(new Counter(), 1075, 325);
-        addObject(new Storage("bread"), 1075, 275);
+        addObject(new Storage("bacon"), 1075, 275);
         addObject(new Counter(), 1075, 225);
-        addObject(new Storage("carrot"), 1075, 175); 
+        addObject(new Storage("tomato"), 1075, 175); 
         addObject(new Counter(), 1075, 125);
         
         addObject(new Plate(), 675, 25);
@@ -103,4 +108,13 @@ public class MyWorld extends World
         
     
     }
+
+    public void act() {
+        //Shows the game over textbox when the timer runs out
+        if (timer.gameOver()) {
+            addObject(new Textbox("Game Over!You ran out of time!"), WORLD_WIDTH/2, WORLD_HEIGHT/2);
+            timer.stop(); 
+        }
+    }
+
 }

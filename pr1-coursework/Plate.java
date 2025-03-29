@@ -5,13 +5,14 @@ import java.util.ArrayList;
  * A workstation where the sandwich is prepared according to the order ticket
  */
 public class Plate extends Workstation{   
-    private ArrayList<String> plate; //Ingredients added to the plate 
+    private ArrayList<Ingredient> plate; //Ingredients added to the plate 
     
     /**
      * Constructor
      */
     public Plate() {
-        this.plate = new ArrayList<String>(); //Empty plate
+        this.plate = new ArrayList<Ingredient>(); //Empty plate
+        setImage("plate.png");
     }
     /**
      * Handles the interaction between the player and the plate
@@ -22,7 +23,7 @@ public class Plate extends Workstation{
         //Does the players inventory contain an ingredient
         if (playerIngredient != null){
             if (playerIngredient.getIsPrepared()) {
-                Ticket ticket = player.currentTicket;
+                Ticket ticket = player.getTicket();
                 // If it is the correct ingredient, add it to the plate 
                 if (isCorrectIngredient(playerIngredient, ticket)){
                     addIngredient(player, playerIngredient);
@@ -59,18 +60,27 @@ public class Plate extends Workstation{
      */
     private void addIngredient(Player player, Ingredient ingredient) {
         player.useInventoryIngredient();
-        this.plate.add(ingredient.getName());
+        if (ingredient.setIngredientLocation(Location.PLATE)) {
+            ingredient.setLocation(getX(), getY());
+            this.plate.add(ingredient);
+        }       
     }
-
     
     /**
      * Completes the completed dish and gives it to the player
      */
     private void createCompletedDish(Player player, Ticket ticket) {
+        deleteIngredients();
         CompletedDish dish = new CompletedDish(ticket);
         getWorld().addObject(dish, player.getX() + MyWorld.INGREDIENT_ICON_OFFSET,
                 player.getY() + MyWorld.INGREDIENT_ICON_OFFSET);
         player.setCompletedDish(dish);
+    }
+
+    private void deleteIngredients(){
+        for (Ingredient ingredient : plate) {
+            getWorld().removeObject(ingredient);
+        }
     }
    
     
