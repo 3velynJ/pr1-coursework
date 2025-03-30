@@ -1,3 +1,5 @@
+// Incorporated other teammates code with mine
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -13,7 +15,6 @@ public class MyWorld extends World
     public static final int WORLD_WIDTH = 1400;
     public static final int INGREDIENT_ICON_OFFSET = 15;
     public static final int SPACE_BETWEEN_COUNTERS = 50;
-    public static final int BOTTOM_ROWY = 475;
     public Timer timer;
 
     /**
@@ -45,21 +46,20 @@ public class MyWorld extends World
         Ticket currentTicket = new Ticket("lt");
         player.setTicket(currentTicket);
 
-        
-        addObject(new Counter(), 1075, BOTTOM_ROWY);
+        // Creating Counters 
+        //(SHOULD DEFINATELY BE CHANGED TO A FOR LOOP WITH CONSTANTS BUT RAN OUT OF TIME TO CHANGE IT!)
+        addObject(new Counter(), 1075, 475);
         addObject(new Counter(), 1075, 425);
-        // addObject(new Counter(), 1075, 375);
-        addObject(new Counter(), 1025, BOTTOM_ROWY);
-        addObject(new Counter(), 975, BOTTOM_ROWY);
-        addObject(new Counter(), 925, BOTTOM_ROWY);
-        addObject(new Bin(), 925, 25);
-        
+        addObject(new Counter(), 1025, 475);
+        addObject(new Counter(), 975, 475);
+        addObject(new Counter(), 925, 475);
+
         addObject(new Counter(), 1075, 25);
         addObject(new Counter(), 1025, 25);
         addObject(new Counter(), 975, 25);
         addObject(new Counter(), 1075, 75);
         addObject(new Counter(), 1075, 125);
-        
+
         addObject(new Counter(), 875, 225);
         addObject(new Counter(), 825, 225);
         addObject(new Counter(), 775, 225);
@@ -67,14 +67,14 @@ public class MyWorld extends World
         addObject(new Counter(), 725, 225);
         addObject(new Counter(), 675, 225);
         addObject(new Counter(), 675, 275);
-        
+
         addObject(new Counter(), 475, 25);
         addObject(new Counter(), 525, 25);
         addObject(new Counter(), 575, 25);
         addObject(new Counter(), 625, 25);
-        
-        //Wall between kitchen and restaurant - counters work for now, left a
-        //gap for service hatch object
+
+        // Wall between kitchen and restaurant - counters work for now, left a
+        // gap for service hatch object
         addObject(new Counter(), 425, 25);
         addObject(new Counter(), 425, 75);
         addObject(new Counter(), 425, 125);
@@ -82,12 +82,13 @@ public class MyWorld extends World
         addObject(new Counter(), 425, 325);
         addObject(new Counter(), 425, 375);
         addObject(new Counter(), 425, 425);
-        addObject(new Counter(), 425, BOTTOM_ROWY);
+        addObject(new Counter(), 425, 475);
         
-        addObject(new PrepArea(Location.HOB,875, BOTTOM_ROWY), 875, BOTTOM_ROWY);
-        addObject(new PrepArea(Location.CHOPPING_BOARD,475,BOTTOM_ROWY), 475, BOTTOM_ROWY);
+        // Pass the enum loactions to the PrepAreas so that they can set the location of ingredients accordingly
+        addObject(new PrepArea(Location.HOB,875, 475), 875, 475);
+        addObject(new PrepArea(Location.CHOPPING_BOARD,475,475), 475, 475);
                 
-        // Give the player to the hatch so that it can add the players ingredient to itas TicketList
+        // Give the player to the hatch so that it can add the player's default ticket to its TicketList
         addObject(new Hatch(player), 425, 250);
     
         
@@ -100,22 +101,22 @@ public class MyWorld extends World
         
         addObject(new Plate(), 675, 25);
         
-        addObject(new Storage("bread"), 675, BOTTOM_ROWY);
-        addObject(new Counter(), 525, BOTTOM_ROWY);
-        addObject(new Counter(), 575, BOTTOM_ROWY);
-        addObject(new Counter(), 625, BOTTOM_ROWY);
-        addObject(new Counter(), 725, BOTTOM_ROWY);
-        addObject(new Counter(), 775, BOTTOM_ROWY);
-        addObject(new Counter(), 825, BOTTOM_ROWY);
+        addObject(new Storage("bread"), 675, 475);
+        addObject(new Counter(), 525, 475);
+        addObject(new Counter(), 575, 475);
+        addObject(new Counter(), 625, 475);
+        addObject(new Counter(), 725, 475);
+        addObject(new Counter(), 775, 475);
+        addObject(new Counter(), 825, 475);
 
+        addObject(new Bin(), 925, 25);
         
         addObject(timer, 315, 557);
         
-    
     }
 
     public void act() {
-        //Shows the game over textbox when the timer runs out
+        // Shows the game over textbox when the timer runs out
         if (timer.gameOver()) {
             addObject(new Textbox("Game Over! You ran out of time!"), WORLD_WIDTH/2, WORLD_HEIGHT/2);
             timer.stop(); 

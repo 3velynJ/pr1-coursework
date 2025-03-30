@@ -16,7 +16,9 @@ public class Hatch extends Workstation
         setImage("hatch.png");
         //Initialises the list that the order tickets will be added to
         this.ticketList = new java.util.ArrayList<>(); 
-        // Initialise at  beecause the player is already given the first ticket by the world 
+
+        // The player is already given the first ticket by the world
+        // Therefore, add our players's ticket to the list before any other tickets so that it is the first ticket accessed 
         ticketList.add(player.getTicket());
         
         // Add the other tickets to the list
@@ -38,16 +40,18 @@ public class Hatch extends Workstation
     protected void onInteraction(Player player) {
         CompletedDish dish = player.getCompletedDish();
         if (dish != null) {
+            // If the player has given a dish to the hatch, delete it and increment listIndex to get the next ticket
             player.setCompletedDish(null);
             getWorld().removeObject(dish);
-            listIndex++; //Increments listIndex to get the next ticket in the list
-
+            listIndex++;
+            // If we have not reached the end of the list, set the currentTicket to the be the next ticket in the list
             if (listIndex < ticketList.size()) {
                 getWorld().addObject(new Textbox("YAY! Order complete!\n Time for the next one!"), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
-
-                currentTicket = ticketList.get(listIndex); //Sets currentTicket to the next ticket to be completed
+                currentTicket = ticketList.get(listIndex); 
                 player.setTicket(currentTicket);
-            } else { //All tickets have been completed so game has been won
+            } 
+            // All tickets have been completed so game has been won
+            else { 
                 currentTicket = null;
                 getWorld().addObject(new Textbox("Well done! You completed the game!"), MyWorld.WORLD_WIDTH/2, MyWorld.WORLD_HEIGHT/2);
                 ((MyWorld) getWorld()).timer.stop();

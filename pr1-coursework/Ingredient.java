@@ -91,6 +91,7 @@ public class Ingredient extends Actor {
         }
     }
 
+    // Used by the plate to check if the Ingredient is fully prepared before it is added
     public boolean getIsPrepared(){
         return isPrepared;
     }

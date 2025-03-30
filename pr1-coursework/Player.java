@@ -52,6 +52,9 @@ public class Player extends Actor {
         up[1].scale(PLAYER_HEIGHT, PLAYER_WIDTH);
     }
 
+    /**
+     * Only allows the player to move if canMove is true
+     */
     public void act() {
         if (canMove) {
             movement();
@@ -64,7 +67,6 @@ public class Player extends Actor {
     public void animate(GreenfootImage[] imgs) {
         // Increases every frame
         animationTimer++;  
-
         if (animationTimer % animationSpeed == 0) { 
             setImage(imgs[count]);
             // Loop between 0 and 1
@@ -72,6 +74,9 @@ public class Player extends Actor {
         }
     }
 
+    /**
+     * Causes the player to collide with obstacles instead of walking through them
+     */
     public void handleCollision(int x, int y){
         if (isTouching(Obstacle.class)) {
                 setLocation(x, y);
@@ -144,6 +149,10 @@ public class Player extends Actor {
         return inventoryIngredient;
     }
 
+    // Stores the passed in Ingredient in the Player's ingredient inventory 
+    // Then sets the enum location of the ingredient to be the inventory
+    // Sets the xy location of the Ingredient to match the player's current position 
+    // And adds an offset so that they are not directly ontop of eachother
     public void storeInventoryIngredient(Ingredient ingredient) {
         inventoryIngredient = ingredient;
         ingredient.setIngredientLocation(Location.INVENTORY);
@@ -151,6 +160,8 @@ public class Player extends Actor {
                 getY() + MyWorld.INGREDIENT_ICON_OFFSET);
     }
 
+    // Takes the ingredient currently stored in the Player's ingredient inventory 
+    // Sets the ingredent inventory to be null and then retuns the ingredient that was in there
     public Ingredient useInventoryIngredient() {
         Ingredient ingredient = inventoryIngredient;
         inventoryIngredient = null;
@@ -161,6 +172,10 @@ public class Player extends Actor {
         return completedDish;
     }
 
+     // Stores the passed in dish in the Player's dish inventory 
+     // If null was not passed in, setting the dish inventory to be empty, then 
+     // Sets the xy location of the dish to match the player's current position 
+     // And adds an offset so that they are not directly ontop of eachother
     public void setCompletedDish(CompletedDish dish) {
         completedDish = dish;
         if (dish != null) {
@@ -173,6 +188,8 @@ public class Player extends Actor {
         return currentTicket;
     }
 
+    // When a ticket is passed in, remove the current ticket from the world
+    // Then make the ticket passed in the current ticket and add it to the world
     public void setTicket(Ticket ticket) {
         if (currentTicket != null) {
             getWorld().removeObject(currentTicket);
