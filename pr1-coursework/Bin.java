@@ -6,15 +6,10 @@ public class Bin extends Workstation{
         setImage("bin.png");
     }
      
-    // Deletes the Ingredient object from the world 
+    // Deletes the Ingredient object, removing it from the world 
     @Override
     protected void onInteraction(Player player) {
         getWorld().removeObject(player.useInventoryIngredient());
     }
-    
-    @Override
-    public void act()
-    {
-       super.act();
-    }
+
 }

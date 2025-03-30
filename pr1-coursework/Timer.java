@@ -1,4 +1,4 @@
-// Modified other team-members work 
+// Modified other teammates code
 import greenfoot.*;
 
 /**

@@ -1,5 +1,7 @@
+// Incorporated other teammates code with mine
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.List;
+
 public class Player extends Actor {
     private int count = 0;
     private int animationSpeed = 10;  
@@ -54,15 +56,19 @@ public class Player extends Actor {
         if (canMove) {
             movement();
         }
-      
     }
 
+     /**
+     * Animates the player when moving by cycling through images
+     */
     public void animate(GreenfootImage[] imgs) {
-        animationTimer++;  // Increases every frame
+        // Increases every frame
+        animationTimer++;  
 
         if (animationTimer % animationSpeed == 0) { 
             setImage(imgs[count]);
-            count = (count + 1) % imgs.length;  // Loop between 0 and 1
+            // Loop between 0 and 1
+            count = (count + 1) % imgs.length;  
         }
     }
 
@@ -72,6 +78,9 @@ public class Player extends Actor {
             }
     }
     
+    /**
+     * Handles the logic for player movemnt and controls 
+     */
     public void movement() {
         boolean isMoving = false;
         GreenfootImage[] direction = null;
@@ -113,17 +122,20 @@ public class Player extends Actor {
                 setImage(direction[1]);
             }
             animate(direction);
+            // If the Player is holding an ingredient, get the ingredient to move with the Player
             if (inventoryIngredient != null){
                 inventoryIngredient.setLocation(x + MyWorld.INGREDIENT_ICON_OFFSET,y + MyWorld.INGREDIENT_ICON_OFFSET);
             }
+            // If the Player is holding a dish, get the dish to move with the Player
             if (completedDish != null){
                 completedDish.setLocation(x + MyWorld.INGREDIENT_ICON_OFFSET,y + MyWorld.INGREDIENT_ICON_OFFSET);
             }
             
         } else {
+            // Reset animation when stopping
             setRotation(0);
             setImage(standingImg);
-            count = 0;  // Reset animation when stopping
+            count = 0;  
         }
     
     }

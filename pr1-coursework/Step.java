@@ -67,6 +67,7 @@ public abstract class Step {
         return isRuined;
     } 
 
+    // Used by the Ingredient to get the progress of the current step
     public ProgressBar getProgressBar(){
         return progressBar;
     }

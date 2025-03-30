@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 /**
  * This is the base class for an Ingredient. It is passed different Steps on
- * construction, depenting on what kind of ingredient it is.
+ * construction, depending on what kind of ingredient it is.
  * 
  * 
  * @author (Joanna Grant)
@@ -99,6 +99,8 @@ public class Ingredient extends Actor {
         return name;
     }
 
+    // Gets the progress bar of the current step
+    // Called by the prepArea, who will display the progress bar above it
     public ProgressBar getProgressBar(){
         return currentStep.getProgressBar();
     }

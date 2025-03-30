@@ -1,17 +1,20 @@
+// Incorporated other teammates code with mine
+
 import greenfoot.*;
-import java.util.Stack;
 import java.util.ArrayList;
 /**
  * A workstation where the sandwich is prepared according to the order ticket
  */
 public class Plate extends Workstation{   
-    private ArrayList<Ingredient> plate; //Ingredients added to the plate 
+    //List of Ingredients added to the plate
+    private ArrayList<Ingredient> plate;  
     
     /**
      * Constructor
      */
     public Plate() {
-        this.plate = new ArrayList<Ingredient>(); //Empty plate
+        // Empty plate
+        this.plate = new ArrayList<Ingredient>(); 
         setImage("plate.png");
     }
     /**
@@ -77,9 +80,10 @@ public class Plate extends Workstation{
         player.setCompletedDish(dish);
     }
 
+    // Delete all of the ingredient objects on the plate from the world
+    // Then clear the plate to remove all objects from the plate arraylist
     private void deleteIngredients(){
         for (Ingredient ingredient : plate) {
-            
             getWorld().removeObject(ingredient);
         }
         plate.clear();

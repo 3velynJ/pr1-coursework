@@ -1,3 +1,5 @@
+import greenfoot.*;
+
 public class PrepArea extends Workstation {
     private Ingredient currentIngredient; 
     private Location myLocation;
@@ -7,6 +9,7 @@ public class PrepArea extends Workstation {
     private final int BAR_OFFSET = -25;
 
     public PrepArea(Location location, int x, int y) {
+        // Set the enum location of this prep area so that it can try to set the Ingredient's location to match
         this.myLocation = location;
         this.name = location.locationText;
         this.xCoOrd = x;

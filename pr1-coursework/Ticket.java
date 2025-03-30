@@ -1,4 +1,4 @@
-// All Evelyns code 
+// All other teammates code
 
 import greenfoot.*;
 import java.util.ArrayList;
@@ -13,12 +13,14 @@ public class Ticket extends Actor
     
     public Ticket(String type) {
         this.type = type;
+        // Initialises an empty recipe arraylist that ingredient names will be added to
         this.recipe = new ArrayList<String>();
         
-        GreenfootImage ticket_img = new GreenfootImage(type + "-ticket.png");
-        ticket_img.scale(300, 600);
-        setImage(ticket_img);
+        GreenfootImage ticketImg = new GreenfootImage(type + "-ticket.png");
+        ticketImg.scale(300, 600);
+        setImage(ticketImg);
         
+        // Adds the correct ingredient names to the recipe depending on its type
         if (type == "blt") {
             recipe.add("bread");
             recipe.add("bacon");
@@ -38,16 +40,12 @@ public class Ticket extends Actor
         }
     }
     
+    // Returns the list of ingredient names needed to make that recipe
     public ArrayList<String> getRecipe() {
         return this.recipe;
     }
 
     public String getType(){
         return type;
-    }
-    
-    public void act()
-    {
-        
     }
 }

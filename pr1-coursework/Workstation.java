@@ -1,3 +1,5 @@
+// Incorporated other teammates code with mine
+
 import greenfoot.*;
 import java.util.List;
 
@@ -7,7 +9,6 @@ public class Workstation extends Obstacle {
 
     public Workstation(int width, int height) {
         super(width, height);
-
     }
 
     public Workstation() {
@@ -19,7 +20,8 @@ public class Workstation extends Obstacle {
     }
 
     // Gets a list of Players in range of the workstation
-    // Once a player is in range, and therefore the list is not empty, call interaction on our player, the first player in the list
+    // Once a player is in range, and therefore the list is not empty, 
+    // call interaction on our player (the first player in the list)
     protected void interactWithPlayer() {
         List<Player> players = getObjectsInRange(INTERACTION_RANGE, Player.class);
         if (!players.isEmpty()) {
@@ -28,7 +30,7 @@ public class Workstation extends Obstacle {
     }
 
     protected void onInteraction(Player player) {
-        // This method will be overridden by the storage subclass which acts differently to other workstations.
+        // This method will be overridden by the subclasses which behave differently to eachother.
     }
 
     // Checks for a single press of the 'e' button, calling the onInteraction method with each press

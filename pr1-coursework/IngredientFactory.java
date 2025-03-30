@@ -22,7 +22,7 @@ public class IngredientFactory {
         return vegetable;
     }
 
-   // Adds 2 steps (the CookStep,passing in the oven, and then the ChopStep) to the list of Steps, so this ingredient has to be cooked (in the oven) before it can be chopped
+   // Adds 2 steps (the CookStep, passing in the oven, and then the ChopStep) to the list of Steps, so this ingredient has to be cooked (in the oven) before it can be chopped
     public static Ingredient createOvenIngredient(String name, int chopsRequired, int cookTime, int burnTime){
         ArrayList<Step> steps = new ArrayList<Step>();
         steps.add(new CookStep(Location.OVEN, name, cookTime, burnTime,false));

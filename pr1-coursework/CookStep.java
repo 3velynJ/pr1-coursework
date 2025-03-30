@@ -26,13 +26,15 @@ public class CookStep extends Step{
         cook();
     };
     
- // if the timer hasn't already been started then start the timer
- // Once the timer has been started, check whether the timer has exceeded the cookTime of an ingredient
+ // If the timer hasn't already been started then start the timer
+ // Once the timer has been started, if the cooking is still incomplete then update the progress bar
+ // Then check whether the timer has exceeded the cookTime of an ingredient
  // If so set the ingredient to be cooked (cookstep is complete) and then call the burn method
  private void cook() {
      if (timerStarted) {
-         // Only run while the cooking is incomplete
          if (!getIsStepComplete() && !getIsRuined()) {
+            // Calculate the percentage of the progress bar that should be displayed at this point
+            // Update the progress bar with this percentage
              double fractionComplete = (double) timer.millisElapsed() / (double) cookTime;
              progressBar.setPercentComplete(fractionComplete);
          }
@@ -47,8 +49,9 @@ public class CookStep extends Step{
      }
  }
 
-    // Check whether the timer has exceeded the cookTime of an ingredient
-    // If so, burn the ingredient. The cookstep is no longer complete and cannot be completed - the ingrefient has been ruined an can no longer be used to make the dish
+    // Check whether the timer has exceeded the burnTime of an ingredient
+    // If so, burn the ingredient. The cookstep is no longer complete and cannot be completed - 
+    // the ingredient has been ruined an can no longer be used to make the dish
     private void burn(){
         if (burnTime <= timer.millisElapsed()){
             setIcon("burnt.png");

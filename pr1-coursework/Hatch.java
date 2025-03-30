@@ -1,6 +1,7 @@
+// Incorporated other teammates code with mine
+
 import greenfoot.*;
 import java.util.List;
-import java.util.Collections;
 /**
  * A workstation where the player puts the finished sandwich to complete the order
  */
@@ -13,11 +14,12 @@ public class Hatch extends Workstation
     public Hatch(Player player) {
         super(50, 100);// (width, height)
         setImage("hatch.png");
-        this.ticketList = new java.util.ArrayList<>(); //Initialises the list that the order tickets will be added to
+        //Initialises the list that the order tickets will be added to
+        this.ticketList = new java.util.ArrayList<>(); 
         // Initialise at  beecause the player is already given the first ticket by the world 
         ticketList.add(player.getTicket());
         
-        //Add the other tickets to the list
+        // Add the other tickets to the list
         ticketList.add(new Ticket("bl"));
         ticketList.add(new Ticket("blt"));
         

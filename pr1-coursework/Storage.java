@@ -1,5 +1,10 @@
+// Incorporated other teammates code with mine
+
 import greenfoot.*;
 
+/**
+ * A workstation where ingredients are stored and can be taken out by the player
+ */
 public class Storage extends Workstation {
     private String ingredientName;
     private SimpleTimer interactTimer;
@@ -42,6 +47,9 @@ public class Storage extends Workstation {
         return newIngredient;
     }
 
+    /**
+     * Checks whether the cooldown to interact with the storage has ended
+     */
     private boolean canInteract() {
         if (!canInteract && interactTimer.millisElapsed() >= INTERACTION_COOLDOWN) {
             canInteract = true;
@@ -50,16 +58,25 @@ public class Storage extends Workstation {
         return canInteract;
     }
 
+    /**
+    * Starts the cooldown timer abd disables interacction 
+    */
     private void startCooldown() {
         canInteract = false;
         interactTimer.mark();
         showCooldownMessage(); 
     }
 
+    /**
+    * Shows a message while the storage is on cooldown so the play knows that they can't interact with it 
+    */
     private void showCooldownMessage() {
         getWorld().showText(COOLDOWN_MESSAGE, getX(), getY() - 30);
     }
 
+    /**
+     * Removes the cooldown message when the cooldown ends 
+     */
     private void removeCooldownMessage() {
         getWorld().showText("", getX(), getY() - 30);
     }
@@ -67,6 +84,7 @@ public class Storage extends Workstation {
     @Override
     protected void onInteraction(Player player) {
         if (canInteract()) {
+            // If the player has nothing in their hand (no ingredient and no dish), then give the player a new ingredient
             if (player.getInventoryIngredient() == null && player.getCompletedDish() == null) {
                 player.storeInventoryIngredient(createIngredient(player));
             }
