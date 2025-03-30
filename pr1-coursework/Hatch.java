@@ -10,17 +10,17 @@ public class Hatch extends Workstation
     private List<Ticket> ticketList;
     private int listIndex;
 
-    public Hatch() {
+    public Hatch(Player player) {
         super(50, 100);// (width, height)
         setImage("hatch.png");
         this.ticketList = new java.util.ArrayList<>(); //Initialises the list that the order tickets will be added to
+        // Initialise at  beecause the player is already given the first ticket by the world 
+        ticketList.add(player.getTicket());
         
-        //Add the tickets to the list
+        //Add the other tickets to the list
         ticketList.add(new Ticket("bl"));
         ticketList.add(new Ticket("blt"));
-
-        Collections.shuffle(ticketList); //Shuffles ticketList to randomise its order
-
+        
         this.listIndex = 0;
         this.currentTicket = ticketList.get(listIndex);
         

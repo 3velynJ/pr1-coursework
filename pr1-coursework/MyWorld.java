@@ -86,7 +86,10 @@ public class MyWorld extends World
         
         addObject(new PrepArea(Location.HOB,875, BOTTOM_ROWY), 875, BOTTOM_ROWY);
         addObject(new PrepArea(Location.CHOPPING_BOARD,475,BOTTOM_ROWY), 475, BOTTOM_ROWY);
-        addObject(new Hatch(), 425, 250);
+                
+        // Give the player to the hatch so that it can add the players ingredient to itas TicketList
+        addObject(new Hatch(player), 425, 250);
+    
         
         addObject(new Storage("lettuce"), 1075, 375);
         addObject(new Counter(), 1075, 325);
@@ -114,7 +117,7 @@ public class MyWorld extends World
     public void act() {
         //Shows the game over textbox when the timer runs out
         if (timer.gameOver()) {
-            addObject(new Textbox("Game Over!You ran out of time!"), WORLD_WIDTH/2, WORLD_HEIGHT/2);
+            addObject(new Textbox("Game Over! You ran out of time!"), WORLD_WIDTH/2, WORLD_HEIGHT/2);
             timer.stop(); 
         }
     }
