@@ -18,8 +18,8 @@ public class IngredientFactory {
         ArrayList<Step> steps = new ArrayList<Step>();
         steps.add(new ChopStep(Location.CHOPPING_BOARD,name,chopsRequired,false));
         steps.add(new CookStep(Location.HOB, name, cookTime, burnTime,true));
-        Ingredient vegetable = new Ingredient(name, steps);
-        return vegetable;
+        Ingredient ingredient = new Ingredient(name, steps);
+        return ingredient;
     }
 
    // Adds 2 steps (the CookStep, passing in the oven, and then the ChopStep) to the list of Steps, so this ingredient has to be cooked (in the oven) before it can be chopped
@@ -27,8 +27,8 @@ public class IngredientFactory {
         ArrayList<Step> steps = new ArrayList<Step>();
         steps.add(new CookStep(Location.OVEN, name, cookTime, burnTime,false));
         steps.add(new ChopStep(Location.CHOPPING_BOARD,name,chopsRequired,true));
-        Ingredient meat = new Ingredient(name, steps);
-        return meat;
+        Ingredient ingredient = new Ingredient(name, steps);
+        return ingredient;
     }
 
 }
