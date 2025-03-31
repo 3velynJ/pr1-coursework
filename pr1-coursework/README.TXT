@@ -1,1 +1,0 @@
-![Instructions](images/instructions.png)
