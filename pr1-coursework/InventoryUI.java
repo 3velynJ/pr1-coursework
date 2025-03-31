@@ -7,11 +7,12 @@ import greenfoot.*;
 public class InventoryUI extends Actor
 {
     public InventoryUI(){
-        updateInventoryUI(null);
+        updateInventoryUI(null); //Be default the inventory ui is empty
     }
     
     public void updateInventoryUI(String ingredientTexturePath){
         
+        //Draws the inventory ui
         GreenfootImage inventoryContainer = new GreenfootImage(50,50);
         inventoryContainer.setColor(Color.WHITE);
         inventoryContainer.fill();
@@ -23,6 +24,6 @@ public class InventoryUI extends Actor
             ingredientTexture.scale(35,35);
             inventoryContainer.drawImage(ingredientTexture,8,8);
         }
-        setImage(inventoryContainer);
+        setImage(inventoryContainer); // Sets the ui to either display nothing or the image of the ingredient the player is holding
     }
 }

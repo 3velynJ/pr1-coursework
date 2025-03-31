@@ -1,9 +1,8 @@
 import greenfoot.*;
+
 /**
  * The timer that is displayed at the bottom of the world which shows the player how much time they have left to complete their orders
- * 
- */
-
+*/
 public class Timer extends Actor {
     private SimpleTimer timer;
     private int totalSeconds;
@@ -22,7 +21,10 @@ public class Timer extends Actor {
         setImage(timerImage);
         updateImage();
     }
-
+    
+    /**
+     * Deals with the timer countdown logic
+     */
     public void act() {
         if (timerRunning) {
             int elapsedMillis = timer.millisElapsed();
@@ -41,7 +43,11 @@ public class Timer extends Actor {
             }
         }
     }
-
+    
+    /**
+     * Formats and updates the timer every second.
+     * When there are only 30 seconds left, the timer goes red.
+     */
     private void updateImage() {
         int minutes = totalSeconds / 60;
         int seconds = totalSeconds % 60;
@@ -54,18 +60,34 @@ public class Timer extends Actor {
         timerImage.drawString(timeString, 0, 20);
         setImage(timerImage);
     }
-
+    
+    /**
+     * Method to check is the game is over
+     */
     public boolean gameOver() {
         return isGameOver;
     }
-
+    
+    /**
+     * Shows the gameOver textbox
+     */
     public void showGameOver() {
         World world = getWorld();
         Textbox gameOverTextbox = new Textbox("images/game-over.png");
         world.addObject(gameOverTextbox, world.getWidth() / 2, world.getHeight() / 2);
     }
     
+    /**
+     * Stops the timer
+     */
     public void stop() {
         timerRunning = false;
+    }
+    
+    /**
+     * Resumes the timer
+     */
+    public void resume() {
+        timerRunning = true;
     }
 }

@@ -7,8 +7,9 @@ public class Player extends Actor {
     private int count = 0;
     private int animationSpeed = 10;  
     private int animationTimer = 0;
-    private Ingredient playerInventory;
+    private Food playerInventory;
     private InventoryUI inventoryUI;
+    private boolean canMove;
     
     GreenfootImage standing_img = new GreenfootImage("images/standing-char.png");
     GreenfootImage[] down = {
@@ -31,6 +32,7 @@ public class Player extends Actor {
     public Player(InventoryUI inventoryUI) {
         this.inventoryUI = inventoryUI;
         this.playerInventory = null;
+        this.canMove = true;
         
         standing_img.scale(36, 63);
         setImage(standing_img);
@@ -47,11 +49,18 @@ public class Player extends Actor {
         up[0].scale(63, 36);
         up[1].scale(63, 36);
     }
-
+    
+    /**
+     * Only allows the player to move if canMove is true
+     */
     public void act() {
-        movement();
+        if (canMove) {
+            movement();
+        }
     }
-
+    /**
+     * Animates the player when moving by cycling through images
+     */
     public void animate(GreenfootImage[] imgs) {
         animationTimer++;  // Increases every frame
 
@@ -60,13 +69,19 @@ public class Player extends Actor {
             count = (count + 1) % imgs.length;  // Loop between 0 and 1
         }
     }
-
+    
+    /**
+     * Causes the player to collide with obstacles instead of walking through them
+     */
     public void handleCollision(int x, int y){
         if (isTouching(Obstacle.class)) {
                 setLocation(x, y);
             }
     }
     
+    /**
+     * Handles the logic for player movemnt and controls 
+     */
     public void movement() {
         boolean isMoving = false;
         GreenfootImage[] direction = null;
@@ -114,20 +129,31 @@ public class Player extends Actor {
             count = 0;  // Reset animation when stopping
         }
     }
-     public void updateInventoryUI(){
-    if(playerInventory != null) {
-        inventoryUI.updateInventoryUI(playerInventory.getRelativePath());
-    } else {
-        inventoryUI.updateInventoryUI(null);
+    /**
+     * Updates the image in the UI to represent what is in the player's inventory
+     */
+    public void updateInventoryUI(){
+        if(playerInventory != null) {
+            inventoryUI.updateInventoryUI(playerInventory.getRelativeImagePath());
+        } else {
+            inventoryUI.updateInventoryUI(null);
+        }
     }
+    
+    public void setInventory(Food food) {
+        playerInventory = food;
     }
-     public void setInventory(Ingredient ingredient) {
-         playerInventory = ingredient;
-     }
      
-     public Ingredient getInventory() {
-         return playerInventory;
-     }
+    public Food getInventory() {
+        return playerInventory;
+    }
+     
+     /**
+     * Sets whether the player can move or not
+     */
+     public void setCanMove(boolean canMove) {
+        this.canMove = canMove;
+    }
 }
 
 

@@ -5,6 +5,9 @@ import greenfoot.*;
  */
 public class Obstacle extends Actor
 {
+    /**
+     * Sets the image and size of the obstacle object
+     */
     public Obstacle(int width, int height){
         GreenfootImage image = getImage();
         image.scale(width,height);

@@ -1,6 +1,5 @@
 /**
- * A simple timer class that allows you to keep track of how much time
- * has passed between events.
+ * A simple timer class that allows you to keep track of how much time has passed between events.
  */
 public class SimpleTimer
 {
