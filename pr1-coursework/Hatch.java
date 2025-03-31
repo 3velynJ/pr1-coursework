@@ -20,8 +20,10 @@ public class Hatch extends Workstation
         ticketList = new java.util.ArrayList<>(); //Initialises the list that the order tickets will be added to
         
         //Add the tickets to the list
-        ticketList.add(new Ticket("bl"));
         ticketList.add(new Ticket("blt"));
+        ticketList.add(new Ticket("bl"));
+        ticketList.add(new Ticket("lt"));
+        ticketList.add(new Ticket("bl"));
 
         Collections.shuffle(ticketList); //Shuffles ticketList to randomise its order
 

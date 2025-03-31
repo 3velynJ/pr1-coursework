@@ -135,7 +135,7 @@ public class MyWorld extends World {
         addObject(new Bin(), 925, 25);
         addObject(new Sign(), 750, 550);
 
-        timer = new Timer(300);
+        timer = new Timer(600);
         addObject(timer, 315, 557);
     }
     /**
